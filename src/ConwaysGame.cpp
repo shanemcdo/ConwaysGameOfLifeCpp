@@ -1,12 +1,13 @@
 #include <time.h>
+#include <math.h>
 #include <iostream>
 #include "ConwaysGame.h"
 
 // private
 
 void ConwaysGame::create_grid(){
-    int x = window_size.x / scale;
-    int y = window_size.y / scale;
+    int x = ceil(window_size.x / scale);
+    int y = ceil(window_size.y / scale);
     grid_size.x = x;
     grid_size.y = y;
     grid = new Tile*[y];
