@@ -1,3 +1,4 @@
+#include<iostream>
 #include "ConwaysGame.h"
 
 // private
@@ -7,6 +8,21 @@ Vector2 ConwaysGame::get_grid_size(){
         static_cast<unsigned>(window_size.x / scale),
         static_cast<unsigned>(window_size.y / scale)
     };
+}
+
+void ConwaysGame::create_grid(){
+    Vector2 size = get_grid_size();
+    int x = size.x;
+    int y = size.y;
+    grid = new bool*[y];
+    for(int i = 0; i < y; i++){
+        grid[i] = new bool[x];
+        for(int j = 0; j < x; j++){
+            grid[i][j] = false;
+            std::cout << grid[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
 }
 
 // public
@@ -36,6 +52,7 @@ ConwaysGame::~ConwaysGame(){
 void ConwaysGame::run(){
     InitWindow(window_size.x, window_size.y, "Conway's Game of Life");
     SetTargetFPS(fps);
+    create_grid();
     while(!WindowShouldClose()){
         BeginDrawing();
         ClearBackground(WHITE);

@@ -8,8 +8,9 @@ private:
     Vector2 window_size;
     float scale;
     int fps;
-    int** grid;
+    bool** grid;
     Vector2 get_grid_size();
+    void create_grid();
 public:
     ConwaysGame();
     ConwaysGame(float scl);
