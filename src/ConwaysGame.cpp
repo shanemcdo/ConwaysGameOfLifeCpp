@@ -19,6 +19,9 @@ ConwaysGame::ConwaysGame(float x, float y, float scl, int f){
     fps = f;
 }
 
+ConwaysGame::~ConwaysGame(){
+}
+
 void ConwaysGame::run(){
     InitWindow(window_size.x, window_size.y, "Conway's Game of Life");
     SetTargetFPS(fps);
