@@ -2,17 +2,11 @@
 
 // private
 
-Vector2 ConwaysGame::get_grid_size(){
-    return Vector2 {
-        static_cast<unsigned>(window_size.x / scale),
-        static_cast<unsigned>(window_size.y / scale)
-    };
-}
-
 void ConwaysGame::create_grid(){
-    Vector2 size = get_grid_size();
-    int x = size.x;
-    int y = size.y;
+    int x = window_size.x / scale;
+    int y = window_size.y / scale;
+    grid_size.x = x;
+    grid_size.y = y;
     grid = new bool*[y];
     for(int i = 0; i < y; i++){
         grid[i] = new bool[x];
@@ -44,8 +38,7 @@ ConwaysGame::ConwaysGame(float x, float y, float scl, int f){
 }
 
 ConwaysGame::~ConwaysGame(){
-    Vector2 size = get_grid_size();
-    for(int i = 0; i < size.y; i++){
+    for(int i = 0; i < grid_size.y; i++){
         delete grid[i];
     }
     delete grid;

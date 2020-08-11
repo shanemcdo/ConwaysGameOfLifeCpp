@@ -9,7 +9,7 @@ private:
     float scale;
     int fps;
     bool** grid;
-    Vector2 get_grid_size();
+    Vector2 grid_size;
     void create_grid();
 public:
     ConwaysGame();
