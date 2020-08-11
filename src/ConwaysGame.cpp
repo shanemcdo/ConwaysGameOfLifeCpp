@@ -21,6 +21,10 @@ ConwaysGame::ConwaysGame(float x, float y, float scl, int f){
 
 void ConwaysGame::run(){
     InitWindow(window_size.x, window_size.y, "Conway's Game of Life");
+    SetTargetFPS(fps);
     while(!WindowShouldClose()){
+        BeginDrawing();
+        ClearBackground(WHITE);
+        EndDrawing();
     }
 }
