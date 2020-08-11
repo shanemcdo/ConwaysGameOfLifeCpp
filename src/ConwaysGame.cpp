@@ -18,9 +18,7 @@ void ConwaysGame::create_grid(){
         grid[i] = new bool[x];
         for(int j = 0; j < x; j++){
             grid[i][j] = false;
-            std::cout << grid[i][j] << " ";
         }
-        std::cout << std::endl;
     }
 }
 
@@ -46,6 +44,12 @@ ConwaysGame::ConwaysGame(float x, float y, float scl, int f){
 }
 
 ConwaysGame::~ConwaysGame(){
+    Vector2 size = get_grid_size();
+    for(int i = 0; i < size.y; i++){
+        delete grid[i];
+    }
+    delete grid;
+    grid = nullptr;
 }
 
 void ConwaysGame::run(){
