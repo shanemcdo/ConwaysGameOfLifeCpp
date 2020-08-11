@@ -1,14 +1,15 @@
 #ifndef CONWAYS_GAME
 #define CONWAYS_GAME
 
-#include<raylib.h>
+#include <raylib.h>
+#include "Tile.h"
 
 class ConwaysGame{
 private:
     Vector2 window_size;
     float scale;
     int fps;
-    bool** grid;
+    Tile** grid;
     Vector2 grid_size;
     void create_grid();
     void draw_grid_lines();

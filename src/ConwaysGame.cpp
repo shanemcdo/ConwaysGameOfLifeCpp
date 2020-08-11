@@ -9,12 +9,9 @@ void ConwaysGame::create_grid(){
     int y = window_size.y / scale;
     grid_size.x = x;
     grid_size.y = y;
-    grid = new bool*[y];
+    grid = new Tile*[y];
     for(int i = 0; i < y; i++){
-        grid[i] = new bool[x];
-        for(int j = 0; j < x; j++){
-            grid[i][j] = false;
-        }
+        grid[i] = new Tile[x];
     }
 }
 
@@ -28,7 +25,7 @@ void ConwaysGame::draw_grid_lines(){
 void ConwaysGame::draw_grid(){
     for(int i = 0; i < grid_size.y; i++)
         for(int j = 0; j < grid_size.x; j++)
-            if(grid[i][j])
+            if(grid[i][j].alive)
                 DrawRectangle(j * scale, i * scale, scale, scale, BLACK);
 }
 
@@ -40,7 +37,7 @@ void ConwaysGame::draw(){
 void ConwaysGame::randomize_grid(){
     for (int i = 0; i < grid_size.y; i++)
         for (int j = 0; j < grid_size.x; j++)
-            grid[i][j] = rand() % 2;
+            grid[i][j].alive = rand() % 2;
 }
 
 // public
