@@ -16,6 +16,19 @@ void ConwaysGame::create_grid(){
     }
 }
 
+void ConwaysGame::draw_grid_lines(){
+    for(int i = 0; i <= window_size.y; i += scale){
+        DrawLine(0, i, window_size.x, i, GRAY);
+    }
+    for(int i = 0; i <= window_size.x; i += scale){
+        DrawLine(i, 0, i, window_size.y, GRAY);
+    }
+}
+
+void ConwaysGame::draw(){
+    draw_grid_lines();
+}
+
 // public
 
 ConwaysGame::ConwaysGame():ConwaysGame(900, 600, 10, 30){
@@ -52,6 +65,7 @@ void ConwaysGame::run(){
     while(!WindowShouldClose()){
         BeginDrawing();
         ClearBackground(WHITE);
+        draw();
         EndDrawing();
     }
 }

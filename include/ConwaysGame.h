@@ -11,6 +11,8 @@ private:
     bool** grid;
     Vector2 grid_size;
     void create_grid();
+    void draw_grid_lines();
+    void draw();
 public:
     ConwaysGame();
     ConwaysGame(float scl);
