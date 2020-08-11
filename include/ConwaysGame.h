@@ -9,6 +9,7 @@ private:
     float scale;
     int fps;
     int** grid;
+    Vector2 get_grid_size();
 public:
     ConwaysGame();
     ConwaysGame(float scl);

@@ -1,5 +1,16 @@
 #include "ConwaysGame.h"
 
+// private
+
+Vector2 ConwaysGame::get_grid_size(){
+    return Vector2 {
+        static_cast<unsigned>(window_size.x / scale),
+        static_cast<unsigned>(window_size.y / scale)
+    };
+}
+
+// public
+
 ConwaysGame::ConwaysGame():ConwaysGame(900, 600, 10, 30){
 }
 
