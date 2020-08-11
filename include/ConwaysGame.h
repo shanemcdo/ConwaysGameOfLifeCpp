@@ -12,6 +12,7 @@ private:
     Vector2 grid_size;
     void create_grid();
     void draw_grid_lines();
+    void draw_grid();
     void draw();
 public:
     ConwaysGame();

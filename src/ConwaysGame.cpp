@@ -25,8 +25,16 @@ void ConwaysGame::draw_grid_lines(){
     }
 }
 
+void ConwaysGame::draw_grid(){
+    for(int i = 0; i < grid_size.y; i++)
+        for(int j = 0; j < grid_size.y; j++)
+            if(grid[i][j])
+                DrawRectangle(j * scale, i * scale, scale, scale, BLACK);
+}
+
 void ConwaysGame::draw(){
     draw_grid_lines();
+    draw_grid();
 }
 
 // public
