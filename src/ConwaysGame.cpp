@@ -42,16 +42,16 @@ void ConwaysGame::randomize_grid(){
 
 // public
 
-ConwaysGame::ConwaysGame():ConwaysGame(900, 600, 10, 30){
+ConwaysGame::ConwaysGame():ConwaysGame(1200, 660, 10, 10){
 }
 
-ConwaysGame::ConwaysGame(float scl):ConwaysGame(900, 600, scl, 30){
+ConwaysGame::ConwaysGame(float scl):ConwaysGame(1200, 660, scl, 10){
 }
 
-ConwaysGame::ConwaysGame(float x, float y):ConwaysGame(x, y, 10, 30){
+ConwaysGame::ConwaysGame(float x, float y):ConwaysGame(x, y, 10, 10){
 }
 
-ConwaysGame::ConwaysGame(float x, float y, float scl):ConwaysGame(x, y, scl, 30){
+ConwaysGame::ConwaysGame(float x, float y, float scl):ConwaysGame(x, y, scl, 10){
 }
 
 ConwaysGame::ConwaysGame(float x, float y, float scl, int f){
