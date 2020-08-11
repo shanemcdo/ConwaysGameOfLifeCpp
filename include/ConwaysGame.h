@@ -5,10 +5,13 @@
 
 class ConwaysGame{
 private:
-    Vector2 window_size;
 public:
+    Vector2 window_size;
+    float scale;
     ConwaysGame();
+    ConwaysGame(float scl);
     ConwaysGame(float x, float y);
+    ConwaysGame(float x, float y, float scl);
     void run();
 };
 
