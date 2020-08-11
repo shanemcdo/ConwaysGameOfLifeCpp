@@ -1,3 +1,5 @@
+#include <time.h>
+#include <iostream>
 #include "ConwaysGame.h"
 
 // private
@@ -25,7 +27,7 @@ void ConwaysGame::draw_grid_lines(){
 
 void ConwaysGame::draw_grid(){
     for(int i = 0; i < grid_size.y; i++)
-        for(int j = 0; j < grid_size.y; j++)
+        for(int j = 0; j < grid_size.x; j++)
             if(grid[i][j])
                 DrawRectangle(j * scale, i * scale, scale, scale, BLACK);
 }
@@ -33,6 +35,12 @@ void ConwaysGame::draw_grid(){
 void ConwaysGame::draw(){
     draw_grid_lines();
     draw_grid();
+}
+
+void ConwaysGame::randomize_grid(){
+    for (int i = 0; i < grid_size.y; i++)
+        for (int j = 0; j < grid_size.x; j++)
+            grid[i][j] = rand() % 2;
 }
 
 // public
@@ -54,6 +62,7 @@ ConwaysGame::ConwaysGame(float x, float y, float scl, int f){
     window_size.y = y;
     scale = scl;
     fps = f;
+    srand(time(0));
 }
 
 ConwaysGame::~ConwaysGame(){
@@ -71,6 +80,7 @@ void ConwaysGame::run(){
     while(!WindowShouldClose()){
         BeginDrawing();
         ClearBackground(WHITE);
+        randomize_grid();
         draw();
         EndDrawing();
     }

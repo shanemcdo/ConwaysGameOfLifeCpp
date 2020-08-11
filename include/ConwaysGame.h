@@ -14,6 +14,7 @@ private:
     void draw_grid_lines();
     void draw_grid();
     void draw();
+    void randomize_grid();
 public:
     ConwaysGame();
     ConwaysGame(float scl);
