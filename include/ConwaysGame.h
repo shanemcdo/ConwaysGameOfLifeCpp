@@ -9,6 +9,7 @@ private:
 public:
     ConwaysGame();
     ConwaysGame(float x, float y);
+    void run();
 };
 
 #endif //CONWAYS_GAME
