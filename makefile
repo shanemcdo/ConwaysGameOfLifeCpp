@@ -3,7 +3,7 @@ CFLAGS = -c -Wall
 INCLUDE = -Iinclude
 LIBS = -lraylib -lopengl32 -lgdi32 -lwinmm
 
-all: main
+all: main ConwaysGame
 	$(CC) bin/*.o -o bin/test.exe $(INCLUDE) $(LIBS)
 	@echo
 
