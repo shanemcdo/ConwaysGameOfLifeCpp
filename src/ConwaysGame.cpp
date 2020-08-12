@@ -73,6 +73,9 @@ void ConwaysGame::keyboard_input(){
         case 'p':
             paused = !paused;
             break;
+        case ' ':
+            step();
+            break;
         default:
             break;
     }
