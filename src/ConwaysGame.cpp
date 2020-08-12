@@ -182,6 +182,18 @@ void ConwaysGame::keyboard_input(){
                 fps = 1;
             SetTargetFPS(fps);
             break;
+        case '[':
+            scale -= 1;
+            if(scale <= 1)
+                scale = 1;
+            this->~ConwaysGame();
+            create_grid();
+            break;
+        case ']':
+            scale += 1;
+            this->~ConwaysGame();
+            create_grid();
+            break;
         case '1':
         case '2':
         case '3':
