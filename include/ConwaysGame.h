@@ -6,8 +6,8 @@
 
 enum ColorScheme{
     BlackAndWhite,
-    Red,
     Rainbow,
+    Red,
     LOOP_TO_START
 };
 

@@ -152,10 +152,11 @@ Color ConwaysGame::get_color(int i, int j){
         case  BlackAndWhite:
             return BLACK;
             break;
-        case Red:
-            return Color{255 * (i / grid_size.y + j / grid_size.x) / 2 ,0 ,0, 255};
         case Rainbow:
             return ColorFromHSV(Vector3{360 * (i / grid_size.y + j / grid_size.x) / 2 ,1, 1});
+            break;
+        case Red:
+            return Color{255 * (i / grid_size.y + j / grid_size.x) / 2 ,0 ,0, 255};
             break;
         default:
             return BLACK;
