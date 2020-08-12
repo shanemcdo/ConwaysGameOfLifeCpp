@@ -16,6 +16,8 @@ private:
     void draw_grid();
     void draw();
     void randomize_grid();
+    void step();
+    void count_neighbors(int x, int y);
 public:
     ConwaysGame();
     ConwaysGame(float scl);

@@ -41,6 +41,22 @@ void ConwaysGame::randomize_grid(){
             grid[i][j].alive = rand() % 2;
 }
 
+void ConwaysGame::step(){
+    for(int i = 0; i < grid_size.y; i++)
+        for(int j = 0; j < grid_size.x; j++)
+            count_neighbors(j, i);
+    for(int i = 0; i < grid_size.y; i++)
+        for(int j = 0; j < grid_size.x; j++)
+            grid[i][j].act();
+}
+
+void ConwaysGame::count_neighbors(int x, int y){
+    for(int i = -1; i <= 1; i++)
+        for(int j = -1; j <= 1; j++)
+            if(y + i >= 0 && y + i < grid_size.y && x + j >= 0 && x + j < grid_size.x && grid[y + i][x + j].alive && (i != 0 || j != 0))
+                grid[y][x].neighbors++;
+}
+
 // public
 
 ConwaysGame::ConwaysGame():ConwaysGame(1200, 660, 10, 10){
@@ -75,11 +91,12 @@ void ConwaysGame::run(){
     InitWindow(window_size.x, window_size.y, "Conway's Game of Life");
     SetTargetFPS(fps);
     create_grid();
+    randomize_grid();
     while(!WindowShouldClose()){
         BeginDrawing();
         ClearBackground(WHITE);
-        randomize_grid();
         draw();
+        step();
         EndDrawing();
     }
 }

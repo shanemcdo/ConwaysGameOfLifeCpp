@@ -1,7 +1,7 @@
 #include<ConwaysGame.h>
 
 int main(){
-    ConwaysGame game(1230, 675, 60, 5);
+    ConwaysGame game(1200, 660, 20, 5);
     game.run();
 	return 0;
 }
