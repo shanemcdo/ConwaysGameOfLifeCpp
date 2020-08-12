@@ -1,6 +1,7 @@
 #include <time.h>
 #include <math.h>
 #include <iostream>
+#include <algorithm>
 #include "ConwaysGame.h"
 
 // private
@@ -17,8 +18,28 @@ void ConwaysGame::create_grid(){
 }
 
 void ConwaysGame::resize_grid(){
+    Tile** temp;
+    Vector2 temp_size = grid_size;
+    temp = new Tile*[static_cast<unsigned>(temp_size.y)];
+    for(int i = 0; i < temp_size.y; i++){
+        temp[i] = new Tile[static_cast<unsigned>(temp_size.x)];
+        for(int j = 0; j < temp_size.x; j++){
+            temp[i][j] = grid[i][j];
+        }
+    }
     this->~ConwaysGame();
     create_grid();
+    int x_length = std::min(temp_size.x, grid_size.x);
+    int y_length = std::min(temp_size.x, grid_size.y);
+    for(int i = 0; i < y_length; i++){
+        for(int j = 0; j < x_length; j++){
+            grid[i][j] = temp[i][j];
+        }
+    }
+    for(int i = 0; i < temp_size.y; i++){
+        delete[] temp[i];
+    }
+    delete[] temp;
 }
 
 void ConwaysGame::draw_grid_lines(){
@@ -287,9 +308,9 @@ ConwaysGame::ConwaysGame(float x, float y, float scl, int f){
 
 ConwaysGame::~ConwaysGame(){
     for(int i = 0; i < grid_size.y; i++){
-        delete grid[i];
+        delete[] grid[i];
     }
-    delete grid;
+    delete[] grid;
     grid = nullptr;
 }
 
