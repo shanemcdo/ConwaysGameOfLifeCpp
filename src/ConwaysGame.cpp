@@ -31,8 +31,8 @@ void ConwaysGame::draw_grid(){
 }
 
 void ConwaysGame::draw(){
-    draw_grid_lines();
     draw_grid();
+    draw_grid_lines();
     DrawFPS(5, 5);
 }
 
