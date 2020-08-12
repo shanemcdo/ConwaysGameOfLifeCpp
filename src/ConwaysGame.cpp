@@ -126,6 +126,8 @@ void ConwaysGame::keyboard_input(){
         case '1':
         case '2':
         case '3':
+        case '4':
+        case '5':
             scheme = static_cast<ColorScheme>(key - '1');
             break;
         default:
@@ -156,7 +158,13 @@ Color ConwaysGame::get_color(int i, int j){
             return ColorFromHSV(Vector3{360 * (i / grid_size.y + j / grid_size.x) / 2 ,1, 1});
             break;
         case Red:
-            return Color{255 * (i / grid_size.y + j / grid_size.x) / 2 ,0 ,0, 255};
+            return Color{255 * (i / grid_size.y + j / grid_size.x) / 2 ,0, 0, 255};
+            break;
+        case Green:
+            return Color{0, 255 * (i / grid_size.y + j / grid_size.x) / 2, 0, 255};
+            break;
+        case Blue:
+            return Color{0, 0, 255 * (i / grid_size.y + j / grid_size.x) / 2, 255};
             break;
         default:
             return BLACK;
