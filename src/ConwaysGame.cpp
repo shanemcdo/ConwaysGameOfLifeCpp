@@ -74,7 +74,7 @@ void ConwaysGame::count_neighbors(int x, int y){
 void ConwaysGame::toggle_tile(int x, int y){
     x /= scale;
     y /= scale;
-    if(grid[y][x].last_toggled + 0.2 <= GetTime()){
+    if(y >= 0 && x >= 0 && y < window_size.y && x < window_size.x && grid[y][x].last_toggled + 0.2 <= GetTime()){
         grid[y][x].alive = !grid[y][x].alive;
         grid[y][x].last_toggled = GetTime();
     }
