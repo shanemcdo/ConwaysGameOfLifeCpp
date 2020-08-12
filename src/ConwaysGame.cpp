@@ -51,8 +51,8 @@ void ConwaysGame::draw_help(){
         "I - Invert tiles",
         "R - Randomize tiles",
         "P - Pause/Resume auto-stepping",
-        "+ - Increase framerate",
-        "- - Decrease framerate",
+        "+/- - Increase/Decrease framerate",
+        "[/] - Increase/Decrease scale",
         "S - Cycle through color schemes",
         "1, 2, 3, 4, 5 - Select color Scheme"
     };
