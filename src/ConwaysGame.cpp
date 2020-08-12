@@ -226,8 +226,7 @@ void ConwaysGame::mouse_input(){
 }
 
 void ConwaysGame::cycle_schemes(){
-    int s = scheme + 1;
-    scheme = static_cast<ColorScheme>(s);
+    scheme = static_cast<ColorScheme>(scheme + 1);
     if(scheme ==  LOOP_TO_START){
         scheme = BlackAndWhite;
     }
