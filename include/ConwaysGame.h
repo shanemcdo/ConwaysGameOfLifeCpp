@@ -25,6 +25,7 @@ private:
     void toggle_tile(int x, int y);
     void keyboard_input();
     void mouse_input();
+    Color get_color(int i, int j);
 public:
     ConwaysGame();
     ConwaysGame(float scl);

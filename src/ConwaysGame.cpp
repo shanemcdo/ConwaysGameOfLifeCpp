@@ -27,7 +27,7 @@ void ConwaysGame::draw_grid(){
     for(int i = 0; i < grid_size.y; i++)
         for(int j = 0; j < grid_size.x; j++)
             if(grid[i][j].alive)
-                DrawRectangle(j * scale, i * scale, scale, scale, BLACK);
+                DrawRectangle(j * scale, i * scale, scale, scale, get_color(i, j));
 }
 
 void ConwaysGame::draw(){
@@ -117,6 +117,10 @@ void ConwaysGame::mouse_input(){
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) || IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
         toggle_tile(GetMouseX(), GetMouseY());
     }
+}
+
+Color ConwaysGame::get_color(int i, int j){
+    return BLACK;
 }
 
 // public
