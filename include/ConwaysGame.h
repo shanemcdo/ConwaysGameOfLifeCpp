@@ -35,7 +35,6 @@ private:
     void keyboard_input();
     void mouse_input();
     Color get_color(int i, int j);
-    Color hsv_to_color(int h, double s, double v);
 public:
     ConwaysGame();
     ConwaysGame(float scl);
