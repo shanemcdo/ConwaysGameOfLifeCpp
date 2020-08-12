@@ -19,7 +19,7 @@ private:
     Tile** grid;
     Vector2 grid_size;
     bool paused = false;
-    int scheme = BlackAndWhite;
+    ColorScheme scheme = BlackAndWhite;
     void create_grid();
     void draw_grid_lines();
     void draw_grid();

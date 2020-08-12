@@ -88,7 +88,8 @@ void ConwaysGame::toggle_tile(int x, int y){
 }
 
 void ConwaysGame::keyboard_input(){
-    switch (GetKeyPressed()) {
+    int key = GetKeyPressed();
+    switch (key) {
         case 'R':
         case 'r':
             randomize_grid();
@@ -122,6 +123,11 @@ void ConwaysGame::keyboard_input(){
                 fps = 1;
             SetTargetFPS(fps);
             break;
+        case '1':
+        case '2':
+        case '3':
+            scheme = static_cast<ColorScheme>(key - '1');
+            break;
         default:
             break;
     }
@@ -134,7 +140,8 @@ void ConwaysGame::mouse_input(){
 }
 
 void ConwaysGame::cycle_schemes(){
-    scheme++;
+    int s = scheme + 1;
+    scheme = static_cast<ColorScheme>(s);
     if(scheme ==  LOOP_TO_START){
         scheme = BlackAndWhite;
     }
