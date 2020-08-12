@@ -17,6 +17,7 @@ private:
     void draw_grid();
     void draw();
     void draw_paused();
+    void draw_target_fps();
     void randomize_grid();
     void clear_grid();
     void step();

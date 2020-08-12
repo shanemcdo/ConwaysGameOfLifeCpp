@@ -33,6 +33,7 @@ void ConwaysGame::draw_grid(){
 void ConwaysGame::draw(){
     draw_grid_lines();
     draw_grid();
+    DrawFPS(5, 5);
 }
 
 void ConwaysGame::draw_paused(){
@@ -96,6 +97,16 @@ void ConwaysGame::keyboard_input(){
         case 'C':
         case 'c':
             clear_grid();
+            break;
+        case '+':
+            fps += 2;
+            SetTargetFPS(fps);
+            break;
+        case '-':
+            fps -= 2;
+            if(fps < 1)
+                fps = 1;
+            SetTargetFPS(fps);
             break;
         default:
             break;
