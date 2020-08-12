@@ -31,27 +31,8 @@ void ConwaysGame::draw_grid(){
 }
 
 void ConwaysGame::draw_walls(){
-    DrawLineEx(
-            Vector2{0, 0},
-            Vector2{0, window_size.y},
-            2,
-            RED
-            );
-    DrawLineEx(
-            Vector2{window_size.x, 0},
-            Vector2{window_size.x, window_size.y},
-            2,
-            RED
-            );
-    DrawLineEx(
-            Vector2{0, window_size.y},
-            Vector2{window_size.x, window_size.y},
-            2,
-            RED
-            );
-    DrawLineEx(
-            Vector2{0, 0},
-            Vector2{window_size.x, 0},
+    DrawRectangleLinesEx(
+            Rectangle{0, 0, window_size.x, window_size.y},
             2,
             RED
             );
