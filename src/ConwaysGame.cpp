@@ -69,6 +69,10 @@ void ConwaysGame::keyboard_input(){
         case 'r':
             randomize_grid();
             break;
+        case 'P':
+        case 'p':
+            paused = !paused;
+            break;
         default:
             break;
     }
@@ -118,7 +122,8 @@ void ConwaysGame::run(){
         BeginDrawing();
         ClearBackground(WHITE);
         draw();
-        step();
+        if(!paused)
+            step();
         keyboard_input();
         mouse_input();
         EndDrawing();

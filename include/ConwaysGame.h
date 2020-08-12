@@ -11,6 +11,7 @@ private:
     int fps;
     Tile** grid;
     Vector2 grid_size;
+    bool paused = false;
     void create_grid();
     void draw_grid_lines();
     void draw_grid();
