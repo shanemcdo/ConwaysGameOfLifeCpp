@@ -38,12 +38,34 @@ void ConwaysGame::draw_walls(){
             );
 }
 
+void ConwaysGame::draw_help(){
+    const int arr_size = 10;
+    const int font_size = 60;
+    const char* s[arr_size] = {
+        "H - Toggle help menu",
+        "Click - Toggle tile",
+        "L - Toggle loopable walls",
+        "C - Clear tiles",
+        "I - Invert tiles",
+        "R - Randomize tiles",
+        "P - Pause/Resume auto-stepping",
+        "Space - step manually",
+        "S - Cycle through color schemes",
+        "1, 2, 3, 4, 5 - Select color Scheme"
+    };
+    for(int i = 0; i < arr_size; i++)
+        DrawText(s[i], (window_size.x - MeasureText(s[i], font_size)) / 2, 10 + 60 * i, font_size, BLACK);
+}
+
 void ConwaysGame::draw(){
     draw_grid();
     draw_grid_lines();
     DrawFPS(5, 5);
     if(!loop_walls)
         draw_walls();
+    if(showing_help){
+        draw_help();
+    }
 }
 
 void ConwaysGame::draw_paused(){
@@ -142,6 +164,10 @@ void ConwaysGame::keyboard_input(){
         case 'L':
         case 'l':
             loop_walls = !loop_walls;
+            break;
+        case 'H':
+        case 'h':
+            showing_help = !showing_help;
             break;
         case '+':
             fps += 2;
