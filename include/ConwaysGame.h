@@ -19,7 +19,7 @@ private:
     Tile** grid;
     Vector2 grid_size;
     bool paused = false;
-    ColorScheme scheme = Rainbow;
+    int scheme = BlackAndWhite;
     void create_grid();
     void draw_grid_lines();
     void draw_grid();
@@ -34,6 +34,7 @@ private:
     void toggle_tile(int x, int y);
     void keyboard_input();
     void mouse_input();
+    void cycle_schemes();
     Color get_color(int i, int j);
 public:
     ConwaysGame();

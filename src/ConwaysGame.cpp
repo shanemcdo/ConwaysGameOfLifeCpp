@@ -108,6 +108,10 @@ void ConwaysGame::keyboard_input(){
         case 'i':
             invert_grid();
             break;
+        case 'S':
+        case 's':
+            cycle_schemes();
+            break;
         case '+':
             fps += 2;
             SetTargetFPS(fps);
@@ -129,6 +133,13 @@ void ConwaysGame::mouse_input(){
     }
 }
 
+void ConwaysGame::cycle_schemes(){
+    scheme++;
+    if(scheme ==  LOOP_TO_START){
+        scheme = BlackAndWhite;
+    }
+}
+
 Color ConwaysGame::get_color(int i, int j){
     switch (scheme) {
         case  BlackAndWhite:
@@ -143,6 +154,7 @@ Color ConwaysGame::get_color(int i, int j){
             return BLACK;
     }
 }
+
 // public
 
 ConwaysGame::ConwaysGame():ConwaysGame(1200, 660, 10, 10){
