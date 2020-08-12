@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -c -Wall
+CFLAGS = -c -Wall -Ofast
 INCLUDE = -Iinclude
 LIBS = -lraylib -lopengl32 -lgdi32 -lwinmm
 
