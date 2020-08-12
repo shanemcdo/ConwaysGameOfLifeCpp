@@ -17,6 +17,7 @@ private:
     void draw_grid();
     void draw();
     void randomize_grid();
+    void clear_grid();
     void step();
     void count_neighbors(int x, int y);
     void toggle_tile(int x, int y);
