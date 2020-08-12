@@ -17,6 +17,7 @@ class ConwaysGame{
 private:
     static constexpr Vector2 DEFAULT_WINDOW_SIZE = Vector2{1300, 660};
     static constexpr float DEFAULT_SCALE = 10;
+    static constexpr ColorScheme DEFAULT_SCHEME = BlackAndWhite;
     static const int DEFAULT_FPS = 30;
     Vector2 window_size;
     float scale;

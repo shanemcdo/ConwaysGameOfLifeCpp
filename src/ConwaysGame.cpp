@@ -229,6 +229,10 @@ void ConwaysGame::reset_to_default(){
     window_size = DEFAULT_WINDOW_SIZE;
     scale = DEFAULT_SCALE;
     fps = DEFAULT_FPS;
+    scheme = DEFAULT_SCHEME;
+    this->~ConwaysGame();
+    create_grid();
+    SetTargetFPS(fps);
 }
 
 Color ConwaysGame::get_color(int i, int j){
