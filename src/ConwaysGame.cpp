@@ -129,6 +129,10 @@ void ConwaysGame::keyboard_input(){
         case 's':
             cycle_schemes();
             break;
+        case 'L':
+        case 'l':
+            loop_walls = !loop_walls;
+            break;
         case '+':
             fps += 2;
             SetTargetFPS(fps);
