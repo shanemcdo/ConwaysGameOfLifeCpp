@@ -22,6 +22,7 @@ private:
     Vector2 grid_size;
     bool paused = false;
     ColorScheme scheme = BlackAndWhite;
+    bool loop_walls = false;
     void create_grid();
     void draw_grid_lines();
     void draw_grid();

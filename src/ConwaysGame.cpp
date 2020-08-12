@@ -73,9 +73,25 @@ void ConwaysGame::step(){
 
 void ConwaysGame::count_neighbors(int x, int y){
     for(int i = -1; i <= 1; i++)
-        for(int j = -1; j <= 1; j++)
-            if(y + i >= 0 && y + i < grid_size.y && x + j >= 0 && x + j < grid_size.x && grid[y + i][x + j].alive && (i != 0 || j != 0))
+        for(int j = -1; j <= 1; j++){
+            int xx = x + j;
+            int yy = y + i;
+            if((xx < 0 || xx >= grid_size.x || yy < 0 || yy >= grid_size.y)){
+                if(loop_walls){
+                    if(xx < 0)
+                        xx += grid_size.x;
+                    else if(xx >= grid_size.x)
+                        xx -= grid_size.x;
+                    if(yy < 0)
+                        yy += grid_size.y;
+                    else if(yy >= grid_size.y)
+                        yy -= grid_size.y;
+                }else
+                    continue;
+            }
+            if(grid[yy][xx].alive && (i != 0 || j != 0))
                 grid[y][x].neighbors++;
+        }
 }
 
 void ConwaysGame::toggle_tile(int x, int y){
