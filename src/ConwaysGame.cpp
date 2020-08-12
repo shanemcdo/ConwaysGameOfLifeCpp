@@ -120,7 +120,13 @@ void ConwaysGame::mouse_input(){
 }
 
 Color ConwaysGame::get_color(int i, int j){
-    return BLACK;
+    switch (scheme) {
+        case  BlackAndWhite:
+            return BLACK;
+            break;
+        default:
+            return BLACK;
+    }
 }
 
 // public

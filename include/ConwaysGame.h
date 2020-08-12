@@ -4,6 +4,12 @@
 #include <raylib.h>
 #include "Tile.h"
 
+enum ColorScheme{
+    BlackAndWhite,
+    Rainbow,
+    LOOP_TO_START
+};
+
 class ConwaysGame{
 private:
     Vector2 window_size;
@@ -12,6 +18,7 @@ private:
     Tile** grid;
     Vector2 grid_size;
     bool paused = false;
+    ColorScheme scheme = BlackAndWhite;
     void create_grid();
     void draw_grid_lines();
     void draw_grid();
