@@ -30,10 +30,39 @@ void ConwaysGame::draw_grid(){
                 DrawRectangle(j * scale, i * scale, scale, scale, get_color(i, j));
 }
 
+void ConwaysGame::draw_walls(){
+    DrawLineEx(
+            Vector2{0, 0},
+            Vector2{0, window_size.y},
+            2,
+            RED
+            );
+    DrawLineEx(
+            Vector2{window_size.x, 0},
+            Vector2{window_size.x, window_size.y},
+            2,
+            RED
+            );
+    DrawLineEx(
+            Vector2{0, window_size.y},
+            Vector2{window_size.x, window_size.y},
+            2,
+            RED
+            );
+    DrawLineEx(
+            Vector2{0, 0},
+            Vector2{window_size.x, 0},
+            2,
+            RED
+            );
+}
+
 void ConwaysGame::draw(){
     draw_grid();
     draw_grid_lines();
     DrawFPS(5, 5);
+    if(!loop_walls)
+        draw_walls();
 }
 
 void ConwaysGame::draw_paused(){

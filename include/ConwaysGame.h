@@ -26,6 +26,7 @@ private:
     void create_grid();
     void draw_grid_lines();
     void draw_grid();
+    void draw_walls();
     void draw();
     void draw_paused();
     void draw_target_fps();
