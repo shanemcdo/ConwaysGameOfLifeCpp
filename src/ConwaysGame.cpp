@@ -30,7 +30,7 @@ void ConwaysGame::resize_grid(){
     this->~ConwaysGame();
     create_grid();
     int x_length = std::min(temp_size.x, grid_size.x);
-    int y_length = std::min(temp_size.x, grid_size.y);
+    int y_length = std::min(temp_size.y, grid_size.y);
     for(int i = 0; i < y_length; i++){
         for(int j = 0; j < x_length; j++){
             grid[i][j] = temp[i][j];
