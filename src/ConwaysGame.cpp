@@ -56,6 +56,12 @@ void ConwaysGame::clear_grid(){
             grid[i][j].alive = false;
 }
 
+void ConwaysGame::invert_grid(){
+    for (int i = 0; i < grid_size.y; i++)
+        for (int j = 0; j < grid_size.x; j++)
+            grid[i][j].alive = !grid[i][j].alive;
+}
+
 void ConwaysGame::step(){
     for(int i = 0; i < grid_size.y; i++)
         for(int j = 0; j < grid_size.x; j++)
@@ -97,6 +103,10 @@ void ConwaysGame::keyboard_input(){
         case 'C':
         case 'c':
             clear_grid();
+            break;
+        case 'I':
+        case 'i':
+            invert_grid();
             break;
         case '+':
             fps += 2;

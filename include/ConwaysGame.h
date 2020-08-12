@@ -28,6 +28,7 @@ private:
     void draw_target_fps();
     void randomize_grid();
     void clear_grid();
+    void invert_grid();
     void step();
     void count_neighbors(int x, int y);
     void toggle_tile(int x, int y);
