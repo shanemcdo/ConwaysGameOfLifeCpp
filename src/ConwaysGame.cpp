@@ -16,6 +16,11 @@ void ConwaysGame::create_grid(){
     }
 }
 
+void ConwaysGame::resize_grid(){
+    this->~ConwaysGame();
+    create_grid();
+}
+
 void ConwaysGame::draw_grid_lines(){
     for(int i = 0; i <= window_size.y; i += scale)
         DrawLine(0, i, window_size.x, i, Color{125, 125, 125, 100});
@@ -196,13 +201,11 @@ void ConwaysGame::keyboard_input(){
             scale -= 1;
             if(scale <= 1)
                 scale = 1;
-            this->~ConwaysGame();
-            create_grid();
+            resize_grid();
             break;
         case ']':
             scale += 1;
-            this->~ConwaysGame();
-            create_grid();
+            resize_grid();
             break;
         case '1':
         case '2':
@@ -235,8 +238,7 @@ void ConwaysGame::reset_to_default(){
     scale = DEFAULT_SCALE;
     fps = DEFAULT_FPS;
     scheme = DEFAULT_SCHEME;
-    this->~ConwaysGame();
-    create_grid();
+    resize_grid();
     SetTargetFPS(fps);
 }
 

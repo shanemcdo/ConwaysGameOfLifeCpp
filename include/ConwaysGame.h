@@ -29,6 +29,7 @@ private:
     bool loop_walls = false;
     bool showing_help = true;
     void create_grid();
+    void resize_grid();
     void draw_grid_lines();
     void draw_grid();
     void draw_walls();
