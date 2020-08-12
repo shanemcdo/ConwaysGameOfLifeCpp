@@ -57,6 +57,12 @@ void ConwaysGame::count_neighbors(int x, int y){
                 grid[y][x].neighbors++;
 }
 
+void ConwaysGame::toggle_tile(int x, int y){
+    x /= scale;
+    y /= scale;
+    grid[y][x].alive = !grid[y][x].alive;
+}
+
 void ConwaysGame::keyboard_input(){
     switch (GetKeyPressed()) {
         case 'R':
@@ -65,6 +71,12 @@ void ConwaysGame::keyboard_input(){
             break;
         default:
             break;
+    }
+}
+
+void ConwaysGame::mouse_input(){
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+        toggle_tile(GetMouseX(), GetMouseY());
     }
 }
 
@@ -108,6 +120,7 @@ void ConwaysGame::run(){
         draw();
         step();
         keyboard_input();
+        mouse_input();
         EndDrawing();
     }
 }
