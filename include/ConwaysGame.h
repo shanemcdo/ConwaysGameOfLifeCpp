@@ -6,6 +6,7 @@
 
 enum ColorScheme{
     BlackAndWhite,
+    Red,
     Rainbow,
     LOOP_TO_START
 };
@@ -18,7 +19,7 @@ private:
     Tile** grid;
     Vector2 grid_size;
     bool paused = false;
-    ColorScheme scheme = BlackAndWhite;
+    ColorScheme scheme = Rainbow;
     void create_grid();
     void draw_grid_lines();
     void draw_grid();
@@ -33,6 +34,7 @@ private:
     void keyboard_input();
     void mouse_input();
     Color get_color(int i, int j);
+    Color hsv_to_color(int h, double s, double v);
 public:
     ConwaysGame();
     ConwaysGame(float scl);
