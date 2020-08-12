@@ -64,7 +64,7 @@ void ConwaysGame::draw_help(){
 void ConwaysGame::draw(){
     draw_grid();
     draw_grid_lines();
-    DrawFPS(5, 5);
+    draw_target_fps();
     if(!loop_walls)
         draw_walls();
     if(showing_help){
@@ -78,6 +78,11 @@ void ConwaysGame::draw_paused(){
     const char* s = "Paused";
     int text_width = MeasureText(s, font_size);
     DrawText(s, window_size.x - text_width - padding, padding, font_size, Color{200, 0, 0, 120});
+}
+
+void ConwaysGame::draw_target_fps(){
+    DrawText(TextFormat("%i FPS target", fps), 5, 5, 20, LIME);
+    DrawFPS(5, 25);
 }
 
 void ConwaysGame::randomize_grid(){
