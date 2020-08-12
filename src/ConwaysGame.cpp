@@ -57,6 +57,17 @@ void ConwaysGame::count_neighbors(int x, int y){
                 grid[y][x].neighbors++;
 }
 
+void ConwaysGame::keyboard_input(){
+    switch (GetKeyPressed()) {
+        case 'R':
+        case 'r':
+            randomize_grid();
+            break;
+        default:
+            break;
+    }
+}
+
 // public
 
 ConwaysGame::ConwaysGame():ConwaysGame(1200, 660, 10, 10){
@@ -91,12 +102,12 @@ void ConwaysGame::run(){
     InitWindow(window_size.x, window_size.y, "Conway's Game of Life");
     SetTargetFPS(fps);
     create_grid();
-    randomize_grid();
     while(!WindowShouldClose()){
         BeginDrawing();
         ClearBackground(WHITE);
         draw();
         step();
+        keyboard_input();
         EndDrawing();
     }
 }
