@@ -15,6 +15,9 @@ enum ColorScheme{
 
 class ConwaysGame{
 private:
+    static constexpr Vector2 DEFAULT_WINDOW_SIZE = Vector2{1300, 660};
+    static constexpr float DEFAULT_SCALE = 10;
+    static const int DEFAULT_FPS = 30;
     Vector2 window_size;
     float scale;
     int fps;
@@ -41,6 +44,7 @@ private:
     void keyboard_input();
     void mouse_input();
     void cycle_schemes();
+    void reset_to_default();
     Color get_color(int i, int j);
 public:
     ConwaysGame();

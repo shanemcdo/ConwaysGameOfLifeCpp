@@ -39,7 +39,7 @@ void ConwaysGame::draw_walls(){
 }
 
 void ConwaysGame::draw_help(){
-    const int arr_size = 13;
+    const int arr_size = 14;
     const int font_size = 45;
     const char* s[arr_size] = {
         "H - Toggle help menu",
@@ -51,13 +51,14 @@ void ConwaysGame::draw_help(){
         "I - Invert tiles",
         "R - Randomize tiles",
         "P - Pause/Resume auto-stepping",
+        "D - Reset to default values",
         "+/- - Increase/Decrease framerate",
         "[/] - Increase/Decrease scale",
         "S - Cycle through color schemes",
         "1, 2, 3, 4, 5 - Select color Scheme"
     };
     for(int i = 0; i < arr_size; i++)
-        DrawText(s[i], (window_size.x - MeasureText(s[i], font_size)) / 2, 20 + font_size * i, font_size, BLACK);
+        DrawText(s[i], (window_size.x - MeasureText(s[i], font_size)) / 2, 15 + font_size * i, font_size, BLACK);
 }
 
 void ConwaysGame::draw(){
@@ -172,6 +173,10 @@ void ConwaysGame::keyboard_input(){
         case 'h':
             showing_help = !showing_help;
             break;
+        case 'D':
+        case 'd':
+            reset_to_default();
+            break;
         case '+':
             fps += 2;
             SetTargetFPS(fps);
@@ -220,6 +225,12 @@ void ConwaysGame::cycle_schemes(){
     }
 }
 
+void ConwaysGame::reset_to_default(){
+    window_size = DEFAULT_WINDOW_SIZE;
+    scale = DEFAULT_SCALE;
+    fps = DEFAULT_FPS;
+}
+
 Color ConwaysGame::get_color(int i, int j){
     switch (scheme) {
         case  BlackAndWhite:
@@ -244,16 +255,16 @@ Color ConwaysGame::get_color(int i, int j){
 
 // public
 
-ConwaysGame::ConwaysGame():ConwaysGame(1200, 660, 10, 10){
+ConwaysGame::ConwaysGame():ConwaysGame(DEFAULT_WINDOW_SIZE.x, DEFAULT_WINDOW_SIZE.y, DEFAULT_SCALE, DEFAULT_FPS){
 }
 
-ConwaysGame::ConwaysGame(float scl):ConwaysGame(1200, 660, scl, 10){
+ConwaysGame::ConwaysGame(float scl):ConwaysGame(DEFAULT_WINDOW_SIZE.x, DEFAULT_WINDOW_SIZE.y, scl, DEFAULT_FPS){
 }
 
-ConwaysGame::ConwaysGame(float x, float y):ConwaysGame(x, y, 10, 10){
+ConwaysGame::ConwaysGame(float x, float y):ConwaysGame(x, y, DEFAULT_SCALE, DEFAULT_FPS){
 }
 
-ConwaysGame::ConwaysGame(float x, float y, float scl):ConwaysGame(x, y, scl, 10){
+ConwaysGame::ConwaysGame(float x, float y, float scl):ConwaysGame(x, y, scl, DEFAULT_FPS){
 }
 
 ConwaysGame::ConwaysGame(float x, float y, float scl, int f){

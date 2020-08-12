@@ -9,7 +9,7 @@ int main(int argc, char** argv){
     if(argc > 1){
         scale = std::stoi(argv[1]);
     }
-    ConwaysGame game(1300, 660, scale, 30);
+    ConwaysGame game(scale);
     game.run();
 	return 0;
 }
