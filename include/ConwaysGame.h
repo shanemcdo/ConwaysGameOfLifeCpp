@@ -14,6 +14,8 @@ enum ColorScheme{
 };
 
 class ConwaysGame{
+/* TODO: create copy paste <12-08-20, Shane> */
+/* TODO: Drag to highlight squares <12-08-20, Shane> */
 private:
     static constexpr Vector2 DEFAULT_WINDOW_SIZE = Vector2{1300, 660};
     static constexpr float DEFAULT_SCALE = 10;
