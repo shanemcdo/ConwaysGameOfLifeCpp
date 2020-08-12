@@ -18,9 +18,9 @@ void ConwaysGame::create_grid(){
 
 void ConwaysGame::draw_grid_lines(){
     for(int i = 0; i <= window_size.y; i += scale)
-        DrawLine(0, i, window_size.x, i, Color{125, 125, 125, 125});
+        DrawLine(0, i, window_size.x, i, Color{125, 125, 125, 175});
     for(int i = 0; i <= window_size.x; i += scale)
-        DrawLine(i, 0, i, window_size.y, Color{125, 125, 125, 125});
+        DrawLine(i, 0, i, window_size.y, Color{125, 125, 125, 175});
 }
 
 void ConwaysGame::draw_grid(){
