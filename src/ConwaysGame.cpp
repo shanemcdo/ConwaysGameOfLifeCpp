@@ -39,17 +39,18 @@ void ConwaysGame::draw_walls(){
 }
 
 void ConwaysGame::draw_help(){
-    const int arr_size = 12;
-    const int font_size = 50;
+    const int arr_size = 13;
+    const int font_size = 45;
     const char* s[arr_size] = {
         "H - Toggle help menu",
         "Click - Toggle tile",
+        "Space - step manually",
+        "Esc - Close window",
         "L - Toggle loopable walls",
         "C - Clear tiles",
         "I - Invert tiles",
         "R - Randomize tiles",
         "P - Pause/Resume auto-stepping",
-        "Space - step manually",
         "+ - Increase framerate",
         "- - Decrease framerate",
         "S - Cycle through color schemes",
