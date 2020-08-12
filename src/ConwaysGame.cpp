@@ -39,8 +39,8 @@ void ConwaysGame::draw_walls(){
 }
 
 void ConwaysGame::draw_help(){
-    const int arr_size = 10;
-    const int font_size = 60;
+    const int arr_size = 12;
+    const int font_size = 50;
     const char* s[arr_size] = {
         "H - Toggle help menu",
         "Click - Toggle tile",
@@ -50,11 +50,13 @@ void ConwaysGame::draw_help(){
         "R - Randomize tiles",
         "P - Pause/Resume auto-stepping",
         "Space - step manually",
+        "+ - Increase framerate",
+        "- - Decrease framerate",
         "S - Cycle through color schemes",
         "1, 2, 3, 4, 5 - Select color Scheme"
     };
     for(int i = 0; i < arr_size; i++)
-        DrawText(s[i], (window_size.x - MeasureText(s[i], font_size)) / 2, 10 + 60 * i, font_size, BLACK);
+        DrawText(s[i], (window_size.x - MeasureText(s[i], font_size)) / 2, 20 + font_size * i, font_size, BLACK);
 }
 
 void ConwaysGame::draw(){
