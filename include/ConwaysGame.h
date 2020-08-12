@@ -16,6 +16,7 @@ private:
     void draw_grid_lines();
     void draw_grid();
     void draw();
+    void draw_paused();
     void randomize_grid();
     void clear_grid();
     void step();

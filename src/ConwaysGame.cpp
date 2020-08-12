@@ -35,6 +35,14 @@ void ConwaysGame::draw(){
     draw_grid();
 }
 
+void ConwaysGame::draw_paused(){
+    int font_size = 50;
+    int padding = 10;
+    const char* s = "Paused";
+    int text_width = MeasureText(s, font_size);
+    DrawText(s, window_size.x - text_width - padding, padding, font_size, Color{200, 0, 0, 120});
+}
+
 void ConwaysGame::randomize_grid(){
     for (int i = 0; i < grid_size.y; i++)
         for (int j = 0; j < grid_size.x; j++)
@@ -140,6 +148,8 @@ void ConwaysGame::run(){
         draw();
         if(!paused)
             step();
+        else
+            draw_paused();
         keyboard_input();
         mouse_input();
         EndDrawing();
