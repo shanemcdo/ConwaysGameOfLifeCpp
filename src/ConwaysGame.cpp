@@ -267,7 +267,6 @@ void ConwaysGame::cycle_schemes(){
 }
 
 void ConwaysGame::reset_to_default(){
-    window_size = DEFAULT_WINDOW_SIZE;
     scale = DEFAULT_SCALE;
     fps = DEFAULT_FPS;
     scheme = DEFAULT_SCHEME;
