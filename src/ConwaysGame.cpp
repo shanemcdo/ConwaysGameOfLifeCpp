@@ -122,15 +122,17 @@ void ConwaysGame::draw_target_fps(){
 }
 
 void ConwaysGame::draw_selection(){
+    // selection_end = Vector2{static_cast<int>(GetMouseX() / scale), static_cast<int>(GetMouseY() / scale)};
     Vector2 start{selection_start.x * scale, selection_start.y * scale};
-    // Vector2 end{selection_end.x * scale, selection_end.y * scale};
-    Vector2 end{ceil(GetMouseX() / scale) * scale, ceil(GetMouseY() / scale) * scale};
-    Vector2 size{abs(end.x - start.x) , abs(end.y - start.y)};
+    Vector2 end{selection_end.x * scale, selection_end.y * scale};
+    Vector2 size{abs(end.x - start.x) + scale , abs(end.y - start.y) + scale};
     if(end.x < start.x)
         start.x = end.x;
     if(end.y < start.y)
         start.y = end.y;
     DrawRectangleV(start, size, Color{0, 255, 0, 120});
+    DrawRectangleV(Vector2{selection_start.x * scale, selection_start.y * scale}, Vector2{scale, scale}, Color{0, 0, 255, 60});
+    DrawRectangleV(end, Vector2{scale, scale}, Color{0, 0, 255, 60});
 }
 
 void ConwaysGame::randomize_grid(){

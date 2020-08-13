@@ -26,7 +26,7 @@ private:
     Vector2 window_size;
     Vector2 grid_size;
     Vector2 selection_start{10, 10};
-    Vector2 selection_end{10, 10};
+    Vector2 selection_end{11, 11};
     Tile** grid;
     float scale;
     bool paused = false;
