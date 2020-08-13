@@ -102,9 +102,10 @@ void ConwaysGame::draw(){
     draw_target_fps();
     if(!loop_walls)
         draw_walls();
-    if(showing_help){
+    if(showing_selection)
+        draw_selection();
+    if(showing_help)
         draw_help();
-    }
 }
 
 void ConwaysGame::draw_paused(){
@@ -118,6 +119,18 @@ void ConwaysGame::draw_paused(){
 void ConwaysGame::draw_target_fps(){
     DrawText(TextFormat("%i FPS target", fps), 5, 5, 20, LIME);
     DrawFPS(5, 25);
+}
+
+void ConwaysGame::draw_selection(){
+    Vector2 start{selection_start.x * scale, selection_start.y * scale};
+    // Vector2 end{selection_end.x * scale, selection_end.y * scale};
+    Vector2 end{ceil(GetMouseX() / scale) * scale, ceil(GetMouseY() / scale) * scale};
+    Vector2 size{abs(end.x - start.x) , abs(end.y - start.y)};
+    if(end.x < start.x)
+        start.x = end.x;
+    if(end.y < start.y)
+        start.y = end.y;
+    DrawRectangleV(start, size, Color{0, 255, 0, 120});
 }
 
 void ConwaysGame::randomize_grid(){
