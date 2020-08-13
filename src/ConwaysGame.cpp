@@ -100,10 +100,10 @@ void ConwaysGame::draw(){
     if(showing_grid_lines)
         draw_grid_lines();
     draw_target_fps();
-    if(!loop_walls)
-        draw_walls();
     if(showing_selection)
         draw_selection();
+    if(!loop_walls)
+        draw_walls();
     if(showing_help)
         draw_help();
 }
