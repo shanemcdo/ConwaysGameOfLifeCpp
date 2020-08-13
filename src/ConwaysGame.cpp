@@ -122,7 +122,6 @@ void ConwaysGame::draw_target_fps(){
 }
 
 void ConwaysGame::draw_selection(){
-    // selection_end = Vector2{static_cast<int>(GetMouseX() / scale), static_cast<int>(GetMouseY() / scale)};
     Vector2 start{selection_start.x * scale, selection_start.y * scale};
     Vector2 end{selection_end.x * scale, selection_end.y * scale};
     Vector2 size{abs(end.x - start.x) + scale , abs(end.y - start.y) + scale};
@@ -271,10 +270,22 @@ void ConwaysGame::keyboard_input(){
 }
 
 void ConwaysGame::mouse_input(){
-    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-        toggle_tile(GetMouseX(), GetMouseY(), true);
-    }else if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
-        toggle_tile(GetMouseX(), GetMouseY(), false);
+    if(IsKeyDown(KEY_LEFT_SHIFT)){
+        if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+            selection_start = Vector2{static_cast<int>(GetMouseX() / scale), static_cast<int>(GetMouseY() / scale)};
+            showing_selection = true;
+        }else if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
+            selection_end = Vector2{static_cast<int>(GetMouseX() / scale), static_cast<int>(GetMouseY() / scale)};
+            showing_selection = true;
+        }
+    }else{
+        if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+            toggle_tile(GetMouseX(), GetMouseY(), true);
+            showing_selection = false;
+        }else if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
+            toggle_tile(GetMouseX(), GetMouseY(), false);
+            showing_selection = false;
+        }
     }
     int wheel_move = GetMouseWheelMove();
     if(wheel_move){

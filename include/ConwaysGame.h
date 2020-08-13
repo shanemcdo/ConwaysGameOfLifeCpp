@@ -25,15 +25,15 @@ private:
     Vector2 previous_toggled{-1, -1};
     Vector2 window_size;
     Vector2 grid_size;
-    Vector2 selection_start{10, 10};
-    Vector2 selection_end{11, 11};
+    Vector2 selection_start;
+    Vector2 selection_end;
     Tile** grid;
     float scale;
     bool paused = false;
     bool loop_walls = false;
     bool showing_help = true;
     bool showing_grid_lines = true;
-    bool showing_selection = true;
+    bool showing_selection = false;
     int fps;
     void create_grid();
     void resize_grid();
