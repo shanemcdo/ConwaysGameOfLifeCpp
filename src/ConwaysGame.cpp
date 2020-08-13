@@ -273,9 +273,25 @@ void ConwaysGame::mouse_input(){
     if(IsKeyDown(KEY_LEFT_SHIFT)){
         if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
             selection_start = Vector2{static_cast<int>(GetMouseX() / scale), static_cast<int>(GetMouseY() / scale)};
+            if(selection_start.x < 0)
+                selection_start.x = 0;
+            else if(selection_start.x >= grid_size.x)
+                selection_start.x = grid_size.x - 1;
+            if(selection_start.y < 0)
+                selection_start.y = 0;
+            else if(selection_start.y >= grid_size.y)
+                selection_start.y = grid_size.y - 1;
             showing_selection = true;
         }else if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
             selection_end = Vector2{static_cast<int>(GetMouseX() / scale), static_cast<int>(GetMouseY() / scale)};
+            if(selection_end.x < 0)
+                selection_end.x = 0;
+            else if(selection_end.x >= grid_size.x)
+                selection_end.x = grid_size.x - 1;
+            if(selection_end.y < 0)
+                selection_end.y = 0;
+            else if(selection_end.y >= grid_size.y)
+                selection_end.y = grid_size.y - 1;
             showing_selection = true;
         }
     }else{
