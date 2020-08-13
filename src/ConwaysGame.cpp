@@ -367,6 +367,7 @@ void ConwaysGame::run(){
     SetTraceLogLevel(LOG_NONE);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(window_size.x, window_size.y, "Conway's Game of Life");
+    SetWindowMinSize(MINIMUM_WINDOW_SIZE.x, MINIMUM_WINDOW_SIZE.y);
     SetTargetFPS(fps);
     create_grid();
     while(!WindowShouldClose()){
