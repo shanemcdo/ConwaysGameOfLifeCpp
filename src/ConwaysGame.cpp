@@ -65,7 +65,7 @@ void ConwaysGame::draw_walls(){
 }
 
 void ConwaysGame::draw_help(){
-    const int arr_size = 15;
+    const int arr_size = 19;
     const int font_size = 20;
     int widest = -1;
     const char* s[arr_size] = {
@@ -83,7 +83,11 @@ void ConwaysGame::draw_help(){
         "+/- - Increase/Decrease framerate",
         "[/] - Increase/Decrease scale",
         "S - Cycle through color schemes",
-        "1, 2, 3, 4, 5 - Select color Scheme"
+        "1, 2, 3, 4, 5 - Select color Scheme",
+        "Shift click drag - select",
+        "Shift x - Cut",
+        "Shift c - Copy",
+        "Shift v - Paste"
     };
     for(int i = 0; i < arr_size; i++){
         int s_width = MeasureText(s[i], font_size);
