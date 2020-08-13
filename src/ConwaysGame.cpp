@@ -163,12 +163,14 @@ void ConwaysGame::cut_selection(){
 }
 
 void ConwaysGame::paste_clipboard(){
-    int mx = GetMouseX() / scale;
-    int my = GetMouseY() / scale;
-    for(int i = 0; i < clipboard_size.y; i++)
-        for(int j = 0; j < clipboard_size.x; j++)
-            if(my + i >= 0 && mx + j >= 0 && my + i < grid_size.y && mx + j < grid_size.x)
-                grid[my + i][mx + j] = clipboard[i][j];
+    if(clipboard != nullptr){
+        int mx = GetMouseX() / scale;
+        int my = GetMouseY() / scale;
+        for(int i = 0; i < clipboard_size.y; i++)
+            for(int j = 0; j < clipboard_size.x; j++)
+                if(my + i >= 0 && mx + j >= 0 && my + i < grid_size.y && mx + j < grid_size.x)
+                    grid[my + i][mx + j] = clipboard[i][j];
+    }
 }
 
 void ConwaysGame::randomize_grid(){
