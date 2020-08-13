@@ -204,75 +204,86 @@ void ConwaysGame::toggle_tile(int x, int y, bool click){
 
 void ConwaysGame::keyboard_input(){
     int key = GetKeyPressed();
-    switch (key) {
-        case 'R':
-        case 'r':
-            randomize_grid();
-            break;
-        case 'P':
-        case 'p':
-            paused = !paused;
-            break;
-        case ' ':
-            step();
-            break;
-        case 'C':
-        case 'c':
-            clear_grid();
-            break;
-        case 'I':
-        case 'i':
-            invert_grid();
-            break;
-        case 'S':
-        case 's':
-            cycle_schemes();
-            break;
-        case 'L':
-        case 'l':
-            loop_walls = !loop_walls;
-            break;
-        case 'H':
-        case 'h':
-            showing_help = !showing_help;
-            break;
-        case 'D':
-        case 'd':
-            reset_to_default();
-            break;
-        case 'B':
-        case 'b':
-            showing_grid_lines = !showing_grid_lines;
-            break;
-        case '+':
-            fps += 2;
-            SetTargetFPS(fps);
-            break;
-        case '-':
-            fps -= 2;
-            if(fps < 1)
-                fps = 1;
-            SetTargetFPS(fps);
-            break;
-        case '[':
-            scale -= 1;
-            if(scale <= 1)
-                scale = 1;
-            resize_grid();
-            break;
-        case ']':
-            scale += 1;
-            resize_grid();
-            break;
-        case '1':
-        case '2':
-        case '3':
-        case '4':
-        case '5':
-            scheme = static_cast<ColorScheme>(key - '1');
-            break;
-        default:
-            break;
+    if(IsKeyDown(KEY_LEFT_SHIFT)){
+        switch(key){
+            case 'C':
+            case 'c':
+                copy_selection();
+                break;
+            default:
+                break;
+        }
+    }else{
+        switch(key){
+            case 'R':
+            case 'r':
+                randomize_grid();
+                break;
+            case 'P':
+            case 'p':
+                paused = !paused;
+                break;
+            case ' ':
+                step();
+                break;
+            case 'C':
+            case 'c':
+                clear_grid();
+                break;
+            case 'I':
+            case 'i':
+                invert_grid();
+                break;
+            case 'S':
+            case 's':
+                cycle_schemes();
+                break;
+            case 'L':
+            case 'l':
+                loop_walls = !loop_walls;
+                break;
+            case 'H':
+            case 'h':
+                showing_help = !showing_help;
+                break;
+            case 'D':
+            case 'd':
+                reset_to_default();
+                break;
+            case 'B':
+            case 'b':
+                showing_grid_lines = !showing_grid_lines;
+                break;
+            case '+':
+                fps += 2;
+                SetTargetFPS(fps);
+                break;
+            case '-':
+                fps -= 2;
+                if(fps < 1)
+                    fps = 1;
+                SetTargetFPS(fps);
+                break;
+            case '[':
+                scale -= 1;
+                if(scale <= 1)
+                    scale = 1;
+                resize_grid();
+                break;
+            case ']':
+                scale += 1;
+                resize_grid();
+                break;
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+                scheme = static_cast<ColorScheme>(key - '1');
+                break;
+            default:
+                break;
+        }
     }
 }
 
