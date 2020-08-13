@@ -134,7 +134,7 @@ void ConwaysGame::draw_selection(){
     DrawRectangleV(start, size, Color{0, 255, 0, 120});
 }
 
-void ConwaysGame::copy_selection(){
+void ConwaysGame::copy_selection(bool cut = false){
     if(clipboard != nullptr){
         for(int i = 0; i < clipboard_size.y; i++)
             delete[] clipboard[i];
@@ -145,9 +145,16 @@ void ConwaysGame::copy_selection(){
     clipboard = new Tile*[static_cast<unsigned>(clipboard_size.y)];
     for(int i = 0; i < clipboard_size.y; i++){
         clipboard[i] = new Tile[static_cast<unsigned>(clipboard_size.x)];
-        for(int j = 0; j < clipboard_size.x; j++)
+        for(int j = 0; j < clipboard_size.x; j++){
             clipboard[i][j] = grid[static_cast<unsigned>(selection_start.y) + i][static_cast<unsigned>(selection_start.x) + j];
+            if(cut)
+                grid[static_cast<unsigned>(selection_start.y) + i][static_cast<unsigned>(selection_start.x) + j].alive = false;
+        }
     }
+}
+
+void ConwaysGame::cut_selection(){
+    copy_selection(true);
 }
 
 void ConwaysGame::paste_clipboard(){
@@ -224,6 +231,10 @@ void ConwaysGame::keyboard_input(){
     int key = GetKeyPressed();
     if(IsKeyDown(KEY_LEFT_SHIFT)){
         switch(key){
+            case 'X':
+            case 'x':
+                cut_selection();
+                break;
             case 'C':
             case 'c':
                 copy_selection();

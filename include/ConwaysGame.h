@@ -47,7 +47,8 @@ private:
     void draw_paused();
     void draw_target_fps();
     void draw_selection();
-    void copy_selection();
+    void copy_selection(bool cut);
+    void cut_selection();
     void paste_clipboard();
     void randomize_grid();
     void clear_grid();
