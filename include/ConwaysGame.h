@@ -21,7 +21,7 @@ private:
     static constexpr float DEFAULT_SCALE = 10;
     static constexpr ColorScheme DEFAULT_SCHEME = BlackAndWhite;
     static const int DEFAULT_FPS = 30;
-    ColorScheme scheme = BlackAndWhite;
+    ColorScheme scheme = DEFAULT_SCHEME;
     Vector2 previous_toggled{-1, -1};
     Vector2 window_size;
     Vector2 grid_size;
