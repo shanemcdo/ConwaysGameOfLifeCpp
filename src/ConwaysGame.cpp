@@ -136,8 +136,17 @@ void ConwaysGame::draw_selection(){
 
 void ConwaysGame::copy_selection(){
     if(clipboard != nullptr){
-    } else {
-        std::cout << 'a' << std::endl;
+        for(int i = 0; i < clipboard_size.y; i++)
+            delete[] clipboard[i];
+        delete[] clipboard;
+    }
+    clipboard_size.x = selection_end.x - selection_start.x + 1;
+    clipboard_size.y = selection_end.y - selection_start.y + 1;
+    clipboard = new Tile*[static_cast<unsigned>(clipboard_size.y)];
+    for(int i = 0; i < clipboard_size.y; i++){
+        clipboard[i] = new Tile[static_cast<unsigned>(clipboard_size.x)];
+        for(int j = 0; j < clipboard_size.x; j++)
+            clipboard[i][j] = grid[static_cast<unsigned>(selection_start.y) + i][static_cast<unsigned>(selection_start.x) + j];
     }
 }
 
