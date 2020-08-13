@@ -257,6 +257,13 @@ void ConwaysGame::mouse_input(){
     if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) || IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
         toggle_tile(GetMouseX(), GetMouseY());
     }
+    int wheel_move = GetMouseWheelMove();
+    if(wheel_move){
+        scale += wheel_move;
+        if(scale < 1)
+            scale = 1;
+        resize_grid();
+    }
 }
 
 void ConwaysGame::cycle_schemes(){
