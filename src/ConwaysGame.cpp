@@ -134,6 +134,13 @@ void ConwaysGame::draw_selection(){
     DrawRectangleV(start, size, Color{0, 255, 0, 120});
 }
 
+void ConwaysGame::copy_selection(){
+    if(clipboard != nullptr){
+    } else {
+        std::cout << 'a' << std::endl;
+    }
+}
+
 void ConwaysGame::randomize_grid(){
     for (int i = 0; i < grid_size.y; i++)
         for (int j = 0; j < grid_size.x; j++)

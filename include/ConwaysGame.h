@@ -27,7 +27,9 @@ private:
     Vector2 grid_size;
     Vector2 selection_start;
     Vector2 selection_end;
+    Vector2 clipboard_size;
     Tile** grid;
+    Tile** clipboard = nullptr;
     float scale;
     bool paused = false;
     bool loop_walls = false;
@@ -45,6 +47,7 @@ private:
     void draw_paused();
     void draw_target_fps();
     void draw_selection();
+    void copy_selection();
     void randomize_grid();
     void clear_grid();
     void invert_grid();
