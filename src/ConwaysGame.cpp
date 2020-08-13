@@ -150,6 +150,14 @@ void ConwaysGame::copy_selection(){
     }
 }
 
+void ConwaysGame::paste_clipboard(){
+    int mx = GetMouseX() / scale;
+    int my = GetMouseY() / scale;
+    for(int i = 0; i < clipboard_size.y; i++)
+        for(int j = 0; j < clipboard_size.x; j++)
+            grid[my + i][mx + j] = clipboard[i][j];
+}
+
 void ConwaysGame::randomize_grid(){
     for (int i = 0; i < grid_size.y; i++)
         for (int j = 0; j < grid_size.x; j++)
@@ -218,6 +226,10 @@ void ConwaysGame::keyboard_input(){
             case 'C':
             case 'c':
                 copy_selection();
+                break;
+            case 'V':
+            case 'v':
+                paste_clipboard();
                 break;
             default:
                 break;
