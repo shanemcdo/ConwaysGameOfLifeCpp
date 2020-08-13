@@ -65,8 +65,8 @@ void ConwaysGame::draw_walls(){
 }
 
 void ConwaysGame::draw_help(){
-    const int arr_size = 14;
-    const int font_size = 45;
+    const int arr_size = 15;
+    const int font_size = 40;
     const char* s[arr_size] = {
         "H - Toggle help menu",
         "Click - Toggle tile",
@@ -78,6 +78,7 @@ void ConwaysGame::draw_help(){
         "R - Randomize tiles",
         "P - Pause/Resume auto-stepping",
         "D - Reset to default values",
+        "B - Toggle grid lines",
         "+/- - Increase/Decrease framerate",
         "[/] - Increase/Decrease scale",
         "S - Cycle through color schemes",
@@ -89,7 +90,8 @@ void ConwaysGame::draw_help(){
 
 void ConwaysGame::draw(){
     draw_grid();
-    draw_grid_lines();
+    if(showing_grid_lines)
+        draw_grid_lines();
     draw_target_fps();
     if(!loop_walls)
         draw_walls();
@@ -207,6 +209,10 @@ void ConwaysGame::keyboard_input(){
         case 'D':
         case 'd':
             reset_to_default();
+            break;
+        case 'B':
+        case 'b':
+            showing_grid_lines = !showing_grid_lines;
             break;
         case '+':
             fps += 2;

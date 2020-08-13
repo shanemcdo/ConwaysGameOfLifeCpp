@@ -30,6 +30,7 @@ private:
     ColorScheme scheme = BlackAndWhite;
     bool loop_walls = false;
     bool showing_help = true;
+    bool showing_grid_lines = true;
     void create_grid();
     void resize_grid();
     void draw_grid_lines();
