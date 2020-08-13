@@ -125,13 +125,13 @@ void ConwaysGame::draw_selection(){
     Vector2 start{selection_start.x * scale, selection_start.y * scale};
     Vector2 end{selection_end.x * scale, selection_end.y * scale};
     Vector2 size{abs(end.x - start.x) + scale , abs(end.y - start.y) + scale};
+    DrawRectangleV(start, Vector2{scale, scale}, Color{0, 0, 255, 60});
+    DrawRectangleV(end, Vector2{scale, scale}, Color{0, 0, 255, 60});
     if(end.x < start.x)
         start.x = end.x;
     if(end.y < start.y)
         start.y = end.y;
     DrawRectangleV(start, size, Color{0, 255, 0, 120});
-    DrawRectangleV(Vector2{selection_start.x * scale, selection_start.y * scale}, Vector2{scale, scale}, Color{0, 0, 255, 60});
-    DrawRectangleV(end, Vector2{scale, scale}, Color{0, 0, 255, 60});
 }
 
 void ConwaysGame::randomize_grid(){
