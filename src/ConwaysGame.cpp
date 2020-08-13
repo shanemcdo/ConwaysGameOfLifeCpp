@@ -173,7 +173,7 @@ void ConwaysGame::count_neighbors(int x, int y){
 void ConwaysGame::toggle_tile(int x, int y, bool click){
     x /= scale;
     y /= scale;
-    if(y >= 0 && x >= 0 && y < window_size.y && x < window_size.x){
+    if(y >= 0 && x >= 0 && y < grid_size.y && x < grid_size.x){
         if(click || (x != previous_toggled.x || y != previous_toggled.y)){
             grid[y][x].alive = !grid[y][x].alive;
             previous_toggled = Vector2{x, y};
