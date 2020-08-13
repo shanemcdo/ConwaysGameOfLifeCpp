@@ -170,12 +170,14 @@ void ConwaysGame::count_neighbors(int x, int y){
         }
 }
 
-void ConwaysGame::toggle_tile(int x, int y){
+void ConwaysGame::toggle_tile(int x, int y, bool click){
     x /= scale;
     y /= scale;
-    if(y >= 0 && x >= 0 && y < window_size.y && x < window_size.x && grid[y][x].last_toggled + 0.2 <= GetTime()){
-        grid[y][x].alive = !grid[y][x].alive;
-        grid[y][x].last_toggled = GetTime();
+    if(y >= 0 && x >= 0 && y < window_size.y && x < window_size.x){
+        if(click || (x != previous_toggled.x || y != previous_toggled.y)){
+            grid[y][x].alive = !grid[y][x].alive;
+            previous_toggled = Vector2{x, y};
+        }
     }
 }
 
@@ -254,8 +256,10 @@ void ConwaysGame::keyboard_input(){
 }
 
 void ConwaysGame::mouse_input(){
-    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON) || IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
-        toggle_tile(GetMouseX(), GetMouseY());
+    if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
+        toggle_tile(GetMouseX(), GetMouseY(), true);
+    }else if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
+        toggle_tile(GetMouseX(), GetMouseY(), false);
     }
     int wheel_move = GetMouseWheelMove();
     if(wheel_move){

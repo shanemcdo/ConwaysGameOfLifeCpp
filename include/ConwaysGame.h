@@ -26,6 +26,7 @@ private:
     int fps;
     Tile** grid;
     Vector2 grid_size;
+    Vector2 previous_toggled{-1, -1};
     bool paused = false;
     ColorScheme scheme = BlackAndWhite;
     bool loop_walls = false;
@@ -45,7 +46,7 @@ private:
     void invert_grid();
     void step();
     void count_neighbors(int x, int y);
-    void toggle_tile(int x, int y);
+    void toggle_tile(int x, int y, bool click);
     void keyboard_input();
     void mouse_input();
     void cycle_schemes();
