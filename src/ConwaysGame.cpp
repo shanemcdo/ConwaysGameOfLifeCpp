@@ -364,6 +364,7 @@ ConwaysGame::~ConwaysGame(){
 }
 
 void ConwaysGame::run(){
+    SetTraceLogLevel(LOG_NONE);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(window_size.x, window_size.y, "Conway's Game of Life");
     SetTargetFPS(fps);
