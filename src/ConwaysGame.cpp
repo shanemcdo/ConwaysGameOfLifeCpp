@@ -67,7 +67,6 @@ void ConwaysGame::draw_walls(){
 void ConwaysGame::draw_help(){
     const int arr_size = 15;
     const int font_size = 20;
-    int s_width[arr_size];
     int widest = -1;
     const char* s[arr_size] = {
         "H - Toggle help menu",
@@ -87,14 +86,13 @@ void ConwaysGame::draw_help(){
         "1, 2, 3, 4, 5 - Select color Scheme"
     };
     for(int i = 0; i < arr_size; i++){
-        s_width[i] = MeasureText(s[i], font_size);
-        if(widest < s_width[i]){
-            widest = s_width[i];
+        int s_width = MeasureText(s[i], font_size);
+        if(widest < s_width){
+            widest = s_width;
         }
+        DrawText(s[i], (window_size.x - s_width) / 2, 10 + font_size * i, font_size, BLACK);
     }
-    DrawRectangle((window_size.x - widest) / 2 - 10, 5, widest + 20, arr_size * font_size + 10, Color{125, 125, 125, 125});
-    for(int i = 0; i < arr_size; i++)
-        DrawText(s[i], (window_size.x - s_width[i]) / 2, 10 + font_size * i, font_size, BLACK);
+    DrawRectangle((window_size.x - widest) / 2 - 10, 5, widest + 20, arr_size * font_size + 10, Color{0, 0, 0, 90});
 }
 
 void ConwaysGame::draw(){
