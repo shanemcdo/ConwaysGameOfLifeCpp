@@ -61,6 +61,8 @@ private:
     void cycle_schemes();
     void reset_to_default();
     Color get_color(int i, int j);
+    Vector2 get_selection_corner();
+    Vector2 get_selection_size();
 public:
     ConwaysGame();
     ConwaysGame(float scl);

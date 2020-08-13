@@ -128,14 +128,15 @@ void ConwaysGame::draw_target_fps(){
 void ConwaysGame::draw_selection(){
     Vector2 start{selection_start.x * scale, selection_start.y * scale};
     Vector2 end{selection_end.x * scale, selection_end.y * scale};
-    Vector2 size{abs(end.x - start.x) + scale , abs(end.y - start.y) + scale};
     DrawRectangleV(start, Vector2{scale, scale}, Color{0, 0, 255, 80});
     DrawRectangleV(end, Vector2{scale, scale}, Color{0, 0, 255, 80});
-    if(end.x < start.x)
-        start.x = end.x;
-    if(end.y < start.y)
-        start.y = end.y;
-    DrawRectangleV(start, size, Color{0, 255, 0, 120});
+    Vector2 corner = get_selection_corner();
+    corner.x *= scale;
+    corner.y *= scale;
+    Vector2 size = get_selection_size();
+    size.x *= scale;
+    size.y *= scale;
+    DrawRectangleV(corner, size, Color{0, 255, 0, 120});
 }
 
 void ConwaysGame::copy_selection(bool cut = false){
@@ -402,6 +403,20 @@ Color ConwaysGame::get_color(int i, int j){
         default:
             return BLACK;
     }
+}
+
+Vector2 ConwaysGame::get_selection_corner(){
+    return Vector2{
+        std::min(selection_start.x, selection_end.x),
+        std::min(selection_start.y, selection_end.y)
+    };
+}
+
+Vector2 ConwaysGame::get_selection_size(){
+    return Vector2{
+        abs(selection_end.x - selection_start.x) + 1,
+        abs(selection_end.y - selection_start.y) + 1
+    };
 }
 
 // public
