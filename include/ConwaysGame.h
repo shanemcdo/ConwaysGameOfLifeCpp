@@ -14,7 +14,6 @@ enum ColorScheme{
 };
 
 class ConwaysGame{
-/* TODO: create copy paste <12-08-20, Shane> */
 private:
     static constexpr Vector2 DEFAULT_WINDOW_SIZE{1300, 660};
     static constexpr Vector2 MINIMUM_WINDOW_SIZE{600, 400};

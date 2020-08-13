@@ -236,7 +236,7 @@ void ConwaysGame::toggle_tile(int x, int y, bool click){
 
 void ConwaysGame::keyboard_input(){
     int key = GetKeyPressed();
-    if(IsKeyDown(KEY_LEFT_SHIFT)){
+    if(IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT)){
         switch(key){
             case 'X':
             case 'x':
@@ -249,6 +249,10 @@ void ConwaysGame::keyboard_input(){
             case 'V':
             case 'v':
                 paste_clipboard();
+                break;
+            case '+':
+                fps += 2;
+                SetTargetFPS(fps);
                 break;
             default:
                 break;
@@ -294,10 +298,6 @@ void ConwaysGame::keyboard_input(){
             case 'b':
                 showing_grid_lines = !showing_grid_lines;
                 break;
-            case '+':
-                fps += 2;
-                SetTargetFPS(fps);
-                break;
             case '-':
                 fps -= 2;
                 if(fps < 1)
@@ -328,7 +328,7 @@ void ConwaysGame::keyboard_input(){
 }
 
 void ConwaysGame::mouse_input(){
-    if(IsKeyDown(KEY_LEFT_SHIFT)){
+    if(IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT)){
         if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
             selection_start = Vector2{static_cast<int>(GetMouseX() / scale), static_cast<int>(GetMouseY() / scale)};
             if(selection_start.x < 0)
