@@ -98,11 +98,11 @@ void ConwaysGame::draw_help(){
         "S - Cycle through color schemes",
         "1, 2, 3, 4, 5 - Select color Scheme",
         "Shift click drag - select",
-        "Shift x - Cut",
-        "Shift c - Copy",
-        "Shift v - Paste",
-        "Shift s - save clipboard to",
-        "Shift l - load clipboard from file"
+        "Shift X - Cut",
+        "Shift C - Copy",
+        "Shift V - Paste",
+        "Shift S - save clipboard to",
+        "Shift L - load clipboard from file"
     };
     for(int i = 0; i < arr_size; i++){
         int s_width = MeasureText(s[i], font_size);
