@@ -3,6 +3,8 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <dirent.h>
+#include <sys/types.h>
 #include "ConwaysGame.h"
 
 // private
@@ -180,6 +182,24 @@ void ConwaysGame::draw_input_string(){
     DrawText(header_text.c_str(), (window_size.x - MeasureText(header_text.c_str(), header_text_font_size)) / 2, height - header_text_font_size, header_text_font_size, Color{20, 20, 20, 255});
     DrawRectangle(0, height, window_size.x, font_size + padding, Color{0, 0, 0, 200});
     DrawText(input_string.c_str(), (window_size.x - input_width) / 2, height + padding / 2, font_size, WHITE);
+    draw_asset_files(height + font_size + padding);
+}
+
+void ConwaysGame::draw_asset_files(int box_bottom_y){
+    DIR *dr;
+    struct dirent *en;
+    std::string paths = "";
+    dr = opendir(ASSETS_PATH.c_str()); //open all directory
+    if(dr){
+        while((en = readdir(dr)) != NULL){
+            paths += en->d_name;
+            paths += "   ";
+        }
+        closedir(dr); //close all directory
+    }
+    Rectangle rec{0, box_bottom_y, window_size.x, window_size.y - box_bottom_y};
+    DrawRectangleRec(rec, Color{0, 0, 0, 150});
+    DrawTextRec(GetFontDefault(), paths.c_str(), rec, 20, 10, true, WHITE);
 }
 
 void ConwaysGame::copy_selection(bool cut = false){

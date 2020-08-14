@@ -58,6 +58,7 @@ private:
     void draw_target_fps();
     void draw_selection();
     void draw_input_string();
+    void draw_asset_files(int box_bottom_y);
     void copy_selection(bool cut);
     void cut_selection();
     void clear_selection();
