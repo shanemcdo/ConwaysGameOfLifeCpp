@@ -212,6 +212,17 @@ void ConwaysGame::clear_selection(){
     }
 }
 
+void ConwaysGame::invert_selection(){
+    Vector2 size = get_selection_size();
+    Vector2 corner = get_selection_corner();
+    clipboard = new Tile*[static_cast<unsigned>(size.y)];
+    for(int i = 0; i < size.y; i++){
+        for(int j = 0; j < size.x; j++){
+            grid[static_cast<unsigned>(corner.y) + i][static_cast<unsigned>(corner.x) + j].alive = !grid[static_cast<unsigned>(corner.y) + i][static_cast<unsigned>(corner.x) + j].alive;
+        }
+    }
+}
+
 void ConwaysGame::flip_clipboard_horiz(){
     for(int i = 0; i < clipboard_size.y; i++)
         for(int j = 0; j < clipboard_size.x / 2; j++){
@@ -365,6 +376,10 @@ void ConwaysGame::keyboard_input(){
             case 'D':
             case 'd':
                 clear_selection();
+                break;
+            case 'I':
+            case 'i':
+                invert_selection();
                 break;
             case '+':
                 fps += 2;
