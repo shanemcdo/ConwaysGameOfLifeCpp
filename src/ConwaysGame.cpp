@@ -78,7 +78,7 @@ void ConwaysGame::draw_walls(){
 }
 
 void ConwaysGame::draw_help(){
-    const int arr_size = 21;
+    const int arr_size = 22;
     const int font_size = 20;
     int widest = -1;
     const char* s[arr_size] = {
@@ -102,7 +102,9 @@ void ConwaysGame::draw_help(){
         "Shift C - Copy",
         "Shift V - Paste",
         "Shift S - save clipboard to",
-        "Shift L - load clipboard from file"
+        "Shift L - load clipboard from file",
+        "Shift F - Flip clipboard horizontally"
+
     };
     for(int i = 0; i < arr_size; i++){
         int s_width = MeasureText(s[i], font_size);
