@@ -47,6 +47,10 @@ void ConwaysGame::resize_grid(){
         delete[] temp[i];
     }
     delete[] temp;
+    selection_start.x = std::min(selection_start.x, grid_size.x - 1);
+    selection_start.y = std::min(selection_start.y, grid_size.y - 1);
+    selection_end.x = std::min(selection_end.x, grid_size.x - 1);
+    selection_end.y = std::min(selection_end.y, grid_size.y - 1);
 }
 
 void ConwaysGame::draw_grid_lines(){
