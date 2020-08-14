@@ -158,21 +158,22 @@ void ConwaysGame::draw_input_string(){
     int font_size = 90;
     int padding = 10;
     int height = (window_size.y - font_size + padding) / 2;
-    int text_width;
-    std::string text = "Enter the name of a file to ";
-    text += (input_needed == LoadFile ? "load" : "save");
+    int input_width;
+    int header_text_font_size = 30;
+    std::string header_text = "Enter the name of a file to ";
+    header_text += (input_needed == LoadFile ? "load" : "save");
     while(1){
-        text_width = MeasureText(input_string.c_str(), font_size);
-        if(text_width > window_size.x){
+        input_width = MeasureText(input_string.c_str(), font_size);
+        if(input_width > window_size.x){
             font_size--;
             if(font_size == 1)
                 break;
         }else
             break;
     }
-    DrawText(text.c_str(), (window_size.x - MeasureText(text.c_str(), 40)) / 2, height - 40, 40, Color{20, 20, 20, 255});
+    DrawText(header_text.c_str(), (window_size.x - MeasureText(header_text.c_str(), header_text_font_size)) / 2, height - header_text_font_size, header_text_font_size, Color{20, 20, 20, 255});
     DrawRectangle(0, height, window_size.x, font_size + padding, Color{0, 0, 0, 200});
-    DrawText(input_string.c_str(), (window_size.x - text_width) / 2, height + padding / 2, font_size, WHITE);
+    DrawText(input_string.c_str(), (window_size.x - input_width) / 2, height + padding / 2, font_size, WHITE);
 }
 
 void ConwaysGame::copy_selection(bool cut = false){
