@@ -1,6 +1,5 @@
 #include <time.h>
 #include <math.h>
-#include <iostream>
 #include <algorithm>
 #include "ConwaysGame.h"
 
