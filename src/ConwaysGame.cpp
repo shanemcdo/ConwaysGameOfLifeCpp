@@ -281,10 +281,10 @@ void ConwaysGame::keyboard_input(){
             }else{
                 file_to_clipboard(ASSETS_PATH + input_string);
             }
-            input_needed = None;
+            set_input_needed(None);
             input_string = "";
         }else if(IsKeyPressed(KEY_ESCAPE)){
-            input_needed = None;
+            set_input_needed(None);
             input_string = "";
         }else if(IsKeyPressed(KEY_BACKSPACE)){
             if(input_string != "")
@@ -308,11 +308,13 @@ void ConwaysGame::keyboard_input(){
                 break;
             case 'L':
             case 'l':
-                input_needed = LoadFile;
+                set_input_needed(LoadFile);
+                SetExitKey(0);
                 break;
             case 'S':
             case 's':
-                input_needed = SaveFile;
+                set_input_needed(SaveFile);
+                SetExitKey(0);
                 break;
             case '+':
                 fps += 2;
@@ -493,6 +495,11 @@ void ConwaysGame::clipboard_to_file(std::string file_path){
         f << '\n';
     }
     f.close();
+}
+
+void ConwaysGame::set_input_needed(FileType f){
+    input_needed = f;
+    SetExitKey(f == None ? KEY_ESCAPE : 0);
 }
 
 Color ConwaysGame::get_color(int i, int j){
