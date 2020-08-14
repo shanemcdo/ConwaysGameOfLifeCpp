@@ -37,6 +37,7 @@ private:
     bool showing_selection = false;
     int fps;
     void create_grid();
+    void destroy_grid();
     void resize_grid();
     void draw_grid_lines();
     void draw_grid();

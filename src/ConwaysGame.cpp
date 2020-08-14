@@ -1,4 +1,5 @@
 #include <time.h>
+#include <iostream>
 #include <math.h>
 #include <algorithm>
 #include "ConwaysGame.h"
@@ -16,6 +17,13 @@ void ConwaysGame::create_grid(){
     }
 }
 
+void ConwaysGame::destroy_grid(){
+    for(int i = 0; i < grid_size.y; i++){
+        delete[] grid[i];
+    }
+    delete[] grid;
+}
+
 void ConwaysGame::resize_grid(){
     Tile** temp;
     Vector2 temp_size = grid_size;
@@ -26,7 +34,7 @@ void ConwaysGame::resize_grid(){
             temp[i][j] = grid[i][j];
         }
     }
-    this->~ConwaysGame();
+    destroy_grid();
     create_grid();
     int x_length = std::min(temp_size.x, grid_size.x);
     int y_length = std::min(temp_size.y, grid_size.y);
@@ -446,10 +454,7 @@ ConwaysGame::ConwaysGame(float x, float y, float scl, int f){
 }
 
 ConwaysGame::~ConwaysGame(){
-    for(int i = 0; i < grid_size.y; i++){
-        delete[] grid[i];
-    }
-    delete[] grid;
+    destroy_grid();
     grid = nullptr;
     if(clipboard != nullptr){
         for(int i = 0; i < clipboard_size.y; i++)
