@@ -257,22 +257,24 @@ void ConwaysGame::toggle_tile(int x, int y, bool click){
 void ConwaysGame::keyboard_input(){
     int key = GetKeyPressed();
     if(input_needed != None){
-        switch(key){
-            case KEY_ENTER:
-                if(input_needed == SaveFile){
-                    clipboard_to_file(ASSETS_PATH + input_string);
-                }else{
-                    file_to_clipboard(ASSETS_PATH + input_string);
-                }
-            case KEY_ESCAPE:
-                input_needed = None;
-                input_string = "";
-                break;
-            case KEY_BACKSPACE:
+        if(IsKeyPressed(KEY_ENTER)){
+            std::cout << input_string << std::endl;
+            if(input_needed == SaveFile){
+                clipboard_to_file(ASSETS_PATH + input_string);
+            }else{
+                file_to_clipboard(ASSETS_PATH + input_string);
+            }
+            input_needed = None;
+            input_string = "";
+        }else if(IsKeyPressed(KEY_ESCAPE)){
+            input_needed = None;
+            input_string = "";
+        }else if(IsKeyPressed(KEY_BACKSPACE)){
+            if(input_string != "")
                 input_string.pop_back();
-                break;
-            default:
-                input_string += key;
+        }else if(key){
+            std::cout << char(key) << std::endl;
+            input_string += key;
         }
     }else if(IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT)){
         switch(key){
@@ -290,11 +292,11 @@ void ConwaysGame::keyboard_input(){
                 break;
             case 'L':
             case 'l':
-                file_to_clipboard(ASSETS_PATH + "tub.txt");
+                input_needed = LoadFile;
                 break;
             case 'S':
             case 's':
-                clipboard_to_file(ASSETS_PATH + "out.txt");
+                input_needed = SaveFile;
                 break;
             case '+':
                 fps += 2;
