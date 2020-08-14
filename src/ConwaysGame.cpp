@@ -199,6 +199,16 @@ void ConwaysGame::cut_selection(){
     copy_selection(true);
 }
 
+void ConwaysGame::flip_selection_horiz(){
+    for(int i = 0; i < clipboard_size.y; i++)
+        for(int j = 0; j < clipboard_size.x / 2; j++){
+            Tile temp;
+            temp = clipboard[i][j];
+            clipboard[i][j] = clipboard[i][static_cast<int>(clipboard_size.x - 1) - j];
+            clipboard[i][static_cast<int>(clipboard_size.x - 1) - j] = temp;
+        }
+}
+
 void ConwaysGame::paste_clipboard(){
     if(clipboard != nullptr){
         showing_selection = false;
@@ -323,6 +333,10 @@ void ConwaysGame::keyboard_input(){
             case 's':
                 set_input_needed(SaveFile);
                 SetExitKey(0);
+                break;
+            case 'F':
+            case 'f':
+                flip_selection_horiz();
                 break;
             case '+':
                 fps += 2;
