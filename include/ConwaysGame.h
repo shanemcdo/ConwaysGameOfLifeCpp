@@ -60,8 +60,8 @@ private:
     void draw_input_string();
     void copy_selection(bool cut);
     void cut_selection();
-    void flip_selection_horiz();
-    void flip_selection_vert();
+    void flip_clipboard_horiz();
+    void flip_clipboard_vert();
     void paste_clipboard();
     void destroy_clipboard();
     void randomize_grid();
