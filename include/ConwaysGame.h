@@ -57,6 +57,7 @@ private:
     void draw_paused();
     void draw_target_fps();
     void draw_selection();
+    void draw_input_string();
     void copy_selection(bool cut);
     void cut_selection();
     void paste_clipboard();

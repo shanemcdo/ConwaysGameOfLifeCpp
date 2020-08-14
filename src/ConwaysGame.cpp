@@ -121,7 +121,9 @@ void ConwaysGame::draw(){
         draw_selection();
     if(!loop_walls)
         draw_walls();
-    if(showing_help)
+    if(input_needed != None)
+        draw_input_string();
+    else if(showing_help)
         draw_help();
 }
 
@@ -150,6 +152,22 @@ void ConwaysGame::draw_selection(){
     size.x *= scale;
     size.y *= scale;
     DrawRectangleV(corner, size, Color{0, 255, 0, 120});
+}
+
+void ConwaysGame::draw_input_string(){
+    int font_size = 90;
+    int padding = 10;
+    int height = (window_size.y - font_size + padding) / 2;
+    int text_width;
+    while(1){
+        text_width = MeasureText(input_string.c_str(), font_size);
+        if(text_width > window_size.x)
+            font_size--;
+        else
+            break;
+    }
+    DrawRectangle(0, height, window_size.x, font_size + padding, Color{0, 0, 0, 200});
+    DrawText(input_string.c_str(), (window_size.x - text_width) / 2, height + padding / 2, font_size, WHITE);
 }
 
 void ConwaysGame::copy_selection(bool cut = false){
