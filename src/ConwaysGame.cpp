@@ -276,7 +276,6 @@ void ConwaysGame::keyboard_input(){
     int key = GetKeyPressed();
     if(input_needed != None){
         if(IsKeyPressed(KEY_ENTER)){
-            std::cout << input_string << std::endl;
             if(input_needed == SaveFile){
                 clipboard_to_file(ASSETS_PATH + input_string);
             }else{
@@ -291,7 +290,6 @@ void ConwaysGame::keyboard_input(){
             if(input_string != "")
                 input_string.pop_back();
         }else if(key){
-            std::cout << char(key) << std::endl;
             input_string += key;
         }
     }else if(IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT)){
