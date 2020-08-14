@@ -268,6 +268,9 @@ void ConwaysGame::keyboard_input(){
                 input_needed = None;
                 input_string = "";
                 break;
+            case KEY_BACKSPACE:
+                input_string.pop_back();
+                break;
             default:
                 input_string += key;
         }
