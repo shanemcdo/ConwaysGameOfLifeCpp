@@ -24,7 +24,7 @@ class ConwaysGame{
 private:
     std::string ASSETS_PATH = "C:\\Users\\Shane\\Dropbox\\Desktop\\Coding\\C++\\ConwaysGame\\assets\\";
     static constexpr Vector2 DEFAULT_WINDOW_SIZE{1300, 660};
-    static constexpr Vector2 MINIMUM_WINDOW_SIZE{600, 400};
+    static constexpr Vector2 MINIMUM_WINDOW_SIZE{600, 440};
     static constexpr float DEFAULT_SCALE = 10;
     static constexpr ColorScheme DEFAULT_SCHEME = BlackAndWhite;
     static const int DEFAULT_FPS = 30;
