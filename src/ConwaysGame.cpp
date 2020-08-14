@@ -276,6 +276,7 @@ void ConwaysGame::clear_grid(){
     for (int i = 0; i < grid_size.y; i++)
         for (int j = 0; j < grid_size.x; j++)
             grid[i][j].alive = false;
+    showing_selection = false;
 }
 
 void ConwaysGame::invert_grid(){
