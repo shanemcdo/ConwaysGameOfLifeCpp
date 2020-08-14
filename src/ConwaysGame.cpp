@@ -165,6 +165,7 @@ void ConwaysGame::cut_selection(){
 
 void ConwaysGame::paste_clipboard(){
     if(clipboard != nullptr){
+        showing_selection = false;
         int mx = GetMouseX() / scale;
         int my = GetMouseY() / scale;
         for(int i = 0; i < clipboard_size.y; i++)
