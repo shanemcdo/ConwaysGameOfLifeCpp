@@ -159,13 +159,18 @@ void ConwaysGame::draw_input_string(){
     int padding = 10;
     int height = (window_size.y - font_size + padding) / 2;
     int text_width;
+    std::string text = "Enter the name of a file to ";
+    text += (input_needed == LoadFile ? "load" : "save");
     while(1){
         text_width = MeasureText(input_string.c_str(), font_size);
-        if(text_width > window_size.x)
+        if(text_width > window_size.x){
             font_size--;
-        else
+            if(font_size == 1)
+                break;
+        }else
             break;
     }
+    DrawText(text.c_str(), (window_size.x - MeasureText(text.c_str(), 40)) / 2, height - 40, 40, Color{20, 20, 20, 255});
     DrawRectangle(0, height, window_size.x, font_size + padding, Color{0, 0, 0, 200});
     DrawText(input_string.c_str(), (window_size.x - text_width) / 2, height + padding / 2, font_size, WHITE);
 }
