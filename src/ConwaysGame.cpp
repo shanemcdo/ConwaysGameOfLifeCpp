@@ -139,6 +139,8 @@ void ConwaysGame::draw_selection(){
 }
 
 void ConwaysGame::copy_selection(bool cut = false){
+    if(!showing_selection)
+        return;
     if(clipboard != nullptr){
         for(int i = 0; i < clipboard_size.y; i++)
             delete[] clipboard[i];
