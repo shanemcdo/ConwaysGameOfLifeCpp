@@ -64,6 +64,7 @@ private:
     void cycle_schemes();
     void reset_to_default();
     void file_to_clipboard(std::string file_path);
+    void clipboard_to_file(std::string file_path);
     Color get_color(int i, int j);
     Vector2 get_selection_corner();
     Vector2 get_selection_size();

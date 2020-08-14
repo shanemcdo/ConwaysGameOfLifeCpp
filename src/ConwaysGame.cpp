@@ -274,6 +274,10 @@ void ConwaysGame::keyboard_input(){
             case 'l':
                 file_to_clipboard(ASSETS_PATH + "tub.txt");
                 break;
+            case 'S':
+            case 's':
+                clipboard_to_file(ASSETS_PATH + "out.txt");
+                break;
             case '+':
                 fps += 2;
                 SetTargetFPS(fps);
@@ -437,6 +441,22 @@ void ConwaysGame::file_to_clipboard(std::string file_path){
             }
         }
     }
+    f.close();
+}
+void ConwaysGame::clipboard_to_file(std::string file_path){
+    if(clipboard == nullptr)
+        return;
+    std::ofstream f(file_path);
+    for(int i = 0; i < clipboard_size.y; i++){
+        for(int j = 0; j < clipboard_size.x; j++){
+            if(clipboard[i][j].alive)
+                f << 'x';
+            else
+                f << '.';
+        }
+        f << '\n';
+    }
+    f.close();
 }
 
 Color ConwaysGame::get_color(int i, int j){
