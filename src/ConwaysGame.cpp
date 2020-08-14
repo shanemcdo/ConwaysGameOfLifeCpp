@@ -448,6 +448,12 @@ ConwaysGame::~ConwaysGame(){
     }
     delete[] grid;
     grid = nullptr;
+    if(clipboard != nullptr){
+        for(int i = 0; i < clipboard_size.y; i++)
+            delete[] clipboard[i];
+        delete[] clipboard;
+        clipboard = nullptr;
+    }
 }
 
 void ConwaysGame::run(){
