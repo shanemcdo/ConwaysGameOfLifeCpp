@@ -61,6 +61,7 @@ private:
     void copy_selection(bool cut);
     void cut_selection();
     void flip_selection_horiz();
+    void flip_selection_vert();
     void paste_clipboard();
     void destroy_clipboard();
     void randomize_grid();
