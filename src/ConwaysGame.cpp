@@ -526,8 +526,10 @@ void ConwaysGame::reset_to_default(){
 void ConwaysGame::file_to_clipboard(std::string file_path){
     std::string line;
     std::ifstream f(file_path);
+    if(f.fail())
+        return;
     int lines = 0;
-    int line_width;
+    int line_width = 0;
     while(getline(f, line)){
         lines++;
         line_width = line.size();
