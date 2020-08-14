@@ -1,6 +1,7 @@
 #include <time.h>
-#include <iostream>
 #include <math.h>
+#include <fstream>
+#include <iostream>
 #include <algorithm>
 #include "ConwaysGame.h"
 
@@ -269,6 +270,10 @@ void ConwaysGame::keyboard_input(){
             case 'v':
                 paste_clipboard();
                 break;
+            case 'L':
+            case 'l':
+                file_to_clipboard(ASSETS_PATH + "tub.txt");
+                break;
             case '+':
                 fps += 2;
                 SetTargetFPS(fps);
@@ -402,6 +407,36 @@ void ConwaysGame::reset_to_default(){
     scheme = DEFAULT_SCHEME;
     resize_grid();
     SetTargetFPS(fps);
+}
+
+void ConwaysGame::file_to_clipboard(std::string file_path){
+    std::string line;
+    std::ifstream f(file_path);
+    int lines = 0;
+    int line_width;
+    while(getline(f, line)){
+        lines++;
+        line_width = line.size();
+    }
+    f.clear();
+    f.seekg(0);
+    destroy_clipboard();
+    clipboard_size.x = line_width;
+    clipboard_size.y = lines;
+    clipboard = new Tile*[lines];
+    for(int i = 0; i < lines; i++){
+        getline(f, line);
+        clipboard[i] = new Tile[line_width];
+        for(int j = 0; j < line_width; j++){
+            switch(line[j]){
+                case 'x':
+                    clipboard[i][j] = Tile{true, 0};
+                    break;
+                default:
+                    clipboard[i][j] = Tile{false, 0};
+            }
+        }
+    }
 }
 
 Color ConwaysGame::get_color(int i, int j){

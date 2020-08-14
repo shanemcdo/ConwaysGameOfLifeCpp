@@ -2,6 +2,7 @@
 #define CONWAYS_GAME
 
 #include <raylib.h>
+#include <string>
 #include "Tile.h"
 
 enum ColorScheme{
@@ -15,6 +16,7 @@ enum ColorScheme{
 
 class ConwaysGame{
 private:
+    std::string ASSETS_PATH = "C:\\Users\\Shane\\Dropbox\\Desktop\\Coding\\C++\\ConwaysGame\\assets\\";
     static constexpr Vector2 DEFAULT_WINDOW_SIZE{1300, 660};
     static constexpr Vector2 MINIMUM_WINDOW_SIZE{600, 400};
     static constexpr float DEFAULT_SCALE = 10;
@@ -61,6 +63,7 @@ private:
     void mouse_input();
     void cycle_schemes();
     void reset_to_default();
+    void file_to_clipboard(std::string file_path);
     Color get_color(int i, int j);
     Vector2 get_selection_corner();
     Vector2 get_selection_size();
