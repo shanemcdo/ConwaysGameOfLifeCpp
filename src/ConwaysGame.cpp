@@ -256,7 +256,22 @@ void ConwaysGame::toggle_tile(int x, int y, bool click){
 
 void ConwaysGame::keyboard_input(){
     int key = GetKeyPressed();
-    if(IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT)){
+    if(input_needed != None){
+        switch(key){
+            case KEY_ENTER:
+                if(input_needed == SaveFile){
+                    clipboard_to_file(ASSETS_PATH + input_string);
+                }else{
+                    file_to_clipboard(ASSETS_PATH + input_string);
+                }
+            case KEY_ESCAPE:
+                input_needed = None;
+                input_string = "";
+                break;
+            default:
+                input_string += key;
+        }
+    }else if(IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT)){
         switch(key){
             case 'X':
             case 'x':

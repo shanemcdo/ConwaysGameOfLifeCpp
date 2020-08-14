@@ -14,6 +14,12 @@ enum ColorScheme{
     LOOP_TO_START
 };
 
+enum FileType{
+    LoadFile,
+    SaveFile,
+    None
+};
+
 class ConwaysGame{
 private:
     std::string ASSETS_PATH = "C:\\Users\\Shane\\Dropbox\\Desktop\\Coding\\C++\\ConwaysGame\\assets\\";
@@ -29,8 +35,10 @@ private:
     Vector2 selection_start;
     Vector2 selection_end;
     Vector2 clipboard_size;
+    FileType input_needed = None;
     Tile** grid;
     Tile** clipboard = nullptr;
+    std::string input_string = "";
     float scale;
     bool paused = false;
     bool loop_walls = false;
