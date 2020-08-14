@@ -105,7 +105,6 @@ void ConwaysGame::draw_help(){
         "Shift L - load clipboard from file",
         "Shift F - Flip clipboard horizontally",
         "Shift G - Flip clipboard vertically"
-
     };
     for(int i = 0; i < arr_size; i++){
         int s_width = MeasureText(s[i], font_size);
