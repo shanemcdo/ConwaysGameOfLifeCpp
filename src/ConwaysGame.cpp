@@ -192,14 +192,17 @@ void ConwaysGame::draw_asset_files(int box_bottom_y){
     dr = opendir(ASSETS_PATH.c_str()); //open all directory
     if(dr){
         while((en = readdir(dr)) != NULL){
-            paths += en->d_name;
-            paths += "   ";
+            std::string pth = en->d_name;
+            if(pth != "." && pth != ".."){
+                paths += "  ";
+                paths += pth;
+            }
         }
         closedir(dr); //close all directory
     }
     Rectangle rec{0, box_bottom_y, window_size.x, window_size.y - box_bottom_y};
     DrawRectangleRec(rec, Color{0, 0, 0, 150});
-    DrawTextRec(GetFontDefault(), paths.c_str(), rec, 20, 10, true, WHITE);
+    DrawTextRec(GetFontDefault(), paths.c_str(), rec, 20, 5, true, WHITE);
 }
 
 void ConwaysGame::copy_selection(bool cut = false){
