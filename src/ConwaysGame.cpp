@@ -78,7 +78,7 @@ void ConwaysGame::draw_walls(){
 }
 
 void ConwaysGame::draw_help(){
-    const int arr_size = 23;
+    const int arr_size = 25;
     const int font_size = 20;
     int widest = -1;
     const char* s[arr_size] = {
@@ -104,7 +104,9 @@ void ConwaysGame::draw_help(){
         "Shift S - save clipboard to",
         "Shift L - load clipboard from file",
         "Shift F - Flip clipboard horizontally",
-        "Shift G - Flip clipboard vertically"
+        "Shift G - Flip clipboard vertically",
+        "Shift D - Clear selected area",
+        "Shift I - Invert Selected area"
     };
     for(int i = 0; i < arr_size; i++){
         int s_width = MeasureText(s[i], font_size);
@@ -202,6 +204,8 @@ void ConwaysGame::cut_selection(){
 }
 
 void ConwaysGame::clear_selection(){
+    if(!showing_selection)
+        return;
     Vector2 size = get_selection_size();
     Vector2 corner = get_selection_corner();
     clipboard = new Tile*[static_cast<unsigned>(size.y)];
@@ -213,6 +217,8 @@ void ConwaysGame::clear_selection(){
 }
 
 void ConwaysGame::invert_selection(){
+    if(!showing_selection)
+        return;
     Vector2 size = get_selection_size();
     Vector2 corner = get_selection_corner();
     clipboard = new Tile*[static_cast<unsigned>(size.y)];
