@@ -22,6 +22,7 @@ void ConwaysGame::destroy_grid(){
         delete[] grid[i];
     }
     delete[] grid;
+    grid = nullptr;
 }
 
 void ConwaysGame::resize_grid(){
@@ -153,11 +154,7 @@ void ConwaysGame::draw_selection(){
 void ConwaysGame::copy_selection(bool cut = false){
     if(!showing_selection)
         return;
-    if(clipboard != nullptr){
-        for(int i = 0; i < clipboard_size.y; i++)
-            delete[] clipboard[i];
-        delete[] clipboard;
-    }
+    destroy_clipboard();
     clipboard_size = get_selection_size();
     Vector2 corner = get_selection_corner();
     clipboard = new Tile*[static_cast<unsigned>(clipboard_size.y)];
@@ -184,6 +181,14 @@ void ConwaysGame::paste_clipboard(){
             for(int j = 0; j < clipboard_size.x; j++)
                 if(my + i >= 0 && mx + j >= 0 && my + i < grid_size.y && mx + j < grid_size.x)
                     grid[my + i][mx + j] = clipboard[i][j];
+    }
+}
+
+void ConwaysGame::destroy_clipboard(){
+    if(clipboard != nullptr){
+        for(int i = 0; i < clipboard_size.y; i++)
+            delete[] clipboard[i];
+        delete[] clipboard;
     }
 }
 
@@ -459,13 +464,7 @@ ConwaysGame::ConwaysGame(float x, float y, float scl, int f){
 
 ConwaysGame::~ConwaysGame(){
     destroy_grid();
-    grid = nullptr;
-    if(clipboard != nullptr){
-        for(int i = 0; i < clipboard_size.y; i++)
-            delete[] clipboard[i];
-        delete[] clipboard;
-        clipboard = nullptr;
-    }
+    destroy_clipboard();
 }
 
 void ConwaysGame::run(){

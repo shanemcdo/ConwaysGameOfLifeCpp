@@ -50,6 +50,7 @@ private:
     void copy_selection(bool cut);
     void cut_selection();
     void paste_clipboard();
+    void destroy_clipboard();
     void randomize_grid();
     void clear_grid();
     void invert_grid();
