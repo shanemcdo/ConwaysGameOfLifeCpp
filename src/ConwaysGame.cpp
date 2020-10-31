@@ -81,7 +81,7 @@ void ConwaysGame::draw_walls(){
 
 void ConwaysGame::draw_help(){
     const int arr_size = 25;
-    const int font_size = 20;
+    const int font_size = 35;
     int widest = -1;
     const char* s[arr_size] = {
         "H - Toggle help menu",
