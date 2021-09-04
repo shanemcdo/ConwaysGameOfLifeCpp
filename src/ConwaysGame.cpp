@@ -348,6 +348,7 @@ void ConwaysGame::toggle_tile(int x, int y, bool click){
 
 void ConwaysGame::keyboard_input(){
     int key = GetKeyPressed();
+    int ch = GetCharPressed();
     if(input_needed != None){
         if(IsKeyPressed(KEY_ENTER)){
             if(input_needed == SaveFile){
@@ -363,8 +364,8 @@ void ConwaysGame::keyboard_input(){
         }else if(IsKeyPressed(KEY_BACKSPACE)){
             if(input_string != "")
                 input_string.pop_back();
-        }else if(key){
-            input_string += key;
+        }else if(ch){
+            input_string += ch;
         }
     }else if(IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT)){
         switch(key){
@@ -486,7 +487,7 @@ void ConwaysGame::keyboard_input(){
 void ConwaysGame::mouse_input(){
     if(IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT)){
         if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-            selection_start = Vector2{GetMouseX() / scale, GetMouseY() / scale};
+            selection_start = Vector2{floor(GetMouseX() / scale), floor(GetMouseY() / scale)};
             if(selection_start.x < 0)
                 selection_start.x = 0;
             else if(selection_start.x >= grid_size.x)
@@ -497,7 +498,7 @@ void ConwaysGame::mouse_input(){
                 selection_start.y = grid_size.y - 1;
             showing_selection = true;
         }else if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
-            selection_end = Vector2{GetMouseX() / scale, GetMouseY() / scale};
+            selection_end = Vector2{floor(GetMouseX() / scale), floor(GetMouseY() / scale)};
             if(selection_end.x < 0)
                 selection_end.x = 0;
             else if(selection_end.x >= grid_size.x)
