@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
-#include <dirent.h>
+#include <filesystem>
 #include <sys/types.h>
 #include "ConwaysGame.h"
 
@@ -186,19 +186,14 @@ void ConwaysGame::draw_input_string(){
 }
 
 void ConwaysGame::draw_asset_files(float box_bottom_y){
-    DIR *dr;
-    struct dirent *en;
     std::string paths = "";
-    dr = opendir(ASSETS_PATH.c_str()); //open all directory
-    if(dr){
-        while((en = readdir(dr)) != NULL){
-            std::string pth = en->d_name;
-            if(pth != "." && pth != ".."){
-                paths += "  ";
-                paths += pth;
-            }
-        }
-        closedir(dr); //close all directory
+    bool first = true;
+    for(const auto& entry: std::filesystem::directory_iterator(ASSETS_PATH)){
+        if(first)
+            first = false;
+        else
+            paths += "\t";
+        paths += entry.path().filename().string();
     }
     Rectangle rec{0, box_bottom_y, window_size.x, window_size.y - box_bottom_y};
     DrawRectangleRec(rec, Color{0, 0, 0, 150});
