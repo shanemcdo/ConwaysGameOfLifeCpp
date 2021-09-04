@@ -22,7 +22,7 @@ enum FileType{
 
 class ConwaysGame{
 private:
-    std::string ASSETS_PATH = "C:\\Users\\Shane\\Desktop\\Coding\\C++\\ConwaysGame\\assets\\";
+    std::string ASSETS_PATH = "~/coding/c++/ConwaysGameOfLifeCpp/assets";
     static constexpr Vector2 DEFAULT_WINDOW_SIZE{3400, 1800};
     static constexpr Vector2 MINIMUM_WINDOW_SIZE{1600, 900};
     static constexpr float DEFAULT_SCALE = 10;
@@ -58,7 +58,7 @@ private:
     void draw_target_fps();
     void draw_selection();
     void draw_input_string();
-    void draw_asset_files(int box_bottom_y);
+    void draw_asset_files(float box_bottom_y);
     void copy_selection(bool cut);
     void cut_selection();
     void clear_selection();

@@ -185,7 +185,7 @@ void ConwaysGame::draw_input_string(){
     draw_asset_files(height + font_size + padding);
 }
 
-void ConwaysGame::draw_asset_files(int box_bottom_y){
+void ConwaysGame::draw_asset_files(float box_bottom_y){
     DIR *dr;
     struct dirent *en;
     std::string paths = "";
@@ -346,7 +346,7 @@ void ConwaysGame::toggle_tile(int x, int y, bool click){
     if(y >= 0 && x >= 0 && y < grid_size.y && x < grid_size.x){
         if(click || (x != previous_toggled.x || y != previous_toggled.y)){
             grid[y][x].alive = !grid[y][x].alive;
-            previous_toggled = Vector2{x, y};
+            previous_toggled = Vector2{static_cast<float>(x), static_cast<float>(y)};
         }
     }
 }
@@ -491,7 +491,7 @@ void ConwaysGame::keyboard_input(){
 void ConwaysGame::mouse_input(){
     if(IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT)){
         if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-            selection_start = Vector2{static_cast<int>(GetMouseX() / scale), static_cast<int>(GetMouseY() / scale)};
+            selection_start = Vector2{GetMouseX() / scale, GetMouseY() / scale};
             if(selection_start.x < 0)
                 selection_start.x = 0;
             else if(selection_start.x >= grid_size.x)
@@ -502,7 +502,7 @@ void ConwaysGame::mouse_input(){
                 selection_start.y = grid_size.y - 1;
             showing_selection = true;
         }else if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
-            selection_end = Vector2{static_cast<int>(GetMouseX() / scale), static_cast<int>(GetMouseY() / scale)};
+            selection_end = Vector2{GetMouseX() / scale, GetMouseY() / scale};
             if(selection_end.x < 0)
                 selection_end.x = 0;
             else if(selection_end.x >= grid_size.x)
@@ -605,16 +605,16 @@ Color ConwaysGame::get_color(int i, int j){
             return BLACK;
             break;
         case Rainbow:
-            return ColorFromHSV(Vector3{360 * (i / grid_size.y + j / grid_size.x) / 2 ,1, 1});
+            return ColorFromHSV(360 * (i / grid_size.y + j / grid_size.x) / 2 ,1, 1);
             break;
         case Red:
-            return Color{255 * (i / grid_size.y + j / grid_size.x) / 2 ,0, 0, 255};
+            return Color{static_cast<unsigned char>(255 * (i / grid_size.y + j / grid_size.x) / 2) ,0, 0, 255};
             break;
         case Green:
-            return Color{0, 255 * (i / grid_size.y + j / grid_size.x) / 2, 0, 255};
+            return Color{0, static_cast<unsigned char>(255 * (i / grid_size.y + j / grid_size.x) / 2), 0, 255};
             break;
         case Blue:
-            return Color{0, 0, 255 * (i / grid_size.y + j / grid_size.x) / 2, 255};
+            return Color{0, 0, static_cast<unsigned char>(255 * (i / grid_size.y + j / grid_size.x) / 2), 255};
             break;
         default:
             return BLACK;
