@@ -81,7 +81,7 @@ void ConwaysGame::draw_walls(){
 
 void ConwaysGame::draw_help(){
     const int arr_size = 25;
-    const int font_size = 35;
+    const int font_size = 25;
     int widest = -1;
     const char* s[arr_size] = {
         "H - Toggle help menu",
@@ -667,6 +667,7 @@ void ConwaysGame::run(){
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(window_size.x, window_size.y, "Conway's Game of Life");
     SetWindowMinSize(MINIMUM_WINDOW_SIZE.x, MINIMUM_WINDOW_SIZE.y);
+    SetWindowPosition(0, 0);
     SetTargetFPS(fps);
     create_grid();
     while(!WindowShouldClose()){
