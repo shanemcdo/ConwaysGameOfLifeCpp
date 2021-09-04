@@ -408,6 +408,7 @@ void ConwaysGame::keyboard_input(){
                 invert_selection();
                 break;
             case '+':
+            case '=':
                 fps += 2;
                 SetTargetFPS(fps);
                 break;
@@ -485,6 +486,7 @@ void ConwaysGame::keyboard_input(){
 }
 
 void ConwaysGame::mouse_input(){
+    Vector2 mouse_pos{static_cast<float>(GetMouseX()), static_cast<float>(GetMouseY())};
     if(IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT)){
         if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
             selection_start = Vector2{floor(GetMouseX() / scale), floor(GetMouseY() / scale)};
@@ -511,11 +513,10 @@ void ConwaysGame::mouse_input(){
         }
     }else{
         if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
-            toggle_tile(GetMouseX(), GetMouseY(), true);
+            toggle_tile(mouse_pos.x, mouse_pos.y, true);
             showing_selection = false;
         }else if(IsMouseButtonDown(MOUSE_LEFT_BUTTON)){
-            toggle_tile(GetMouseX(), GetMouseY(), false);
-            showing_selection = false;
+            toggle_line_between(prev_mouse_pos, mouse_pos);
         }
     }
     int wheel_move = GetMouseWheelMove();
@@ -525,6 +526,7 @@ void ConwaysGame::mouse_input(){
             scale = 1;
         resize_grid();
     }
+    prev_mouse_pos = mouse_pos;
 }
 
 void ConwaysGame::cycle_schemes(){
@@ -593,6 +595,17 @@ void ConwaysGame::clipboard_to_file(std::string file_path){
 void ConwaysGame::set_input_needed(FileType f){
     input_needed = f;
     SetExitKey(f == None ? KEY_ESCAPE : 0);
+}
+
+void ConwaysGame::toggle_line_between(Vector2 a, Vector2 b){
+    float dist = ceil(distance(a, b));
+    float theta = atan2(b.y - a.y, b.x - a.x);
+    for(float i = 0; i <= dist; i++)
+        toggle_tile(a.x + i * cos(theta), a.y + i * sin(theta), false);
+}
+
+float ConwaysGame::distance(Vector2 a, Vector2 b){
+    return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
 }
 
 Color ConwaysGame::get_color(int i, int j){
