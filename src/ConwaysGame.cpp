@@ -613,17 +613,13 @@ void ConwaysGame::toggle_line_between(Vector2 a, Vector2 b){
 }
 
 void ConwaysGame::toggle_column(int x){
-    toggle_line_between(
-            Vector2{static_cast<float>(x), 0},
-            Vector2{static_cast<float>(x), window_size.y}
-        );
+    for(float y = 0; y <= window_size.y; y += scale)
+        toggle_tile(x, y, false);
 }
 
 void ConwaysGame::toggle_row(int y){
-    toggle_line_between(
-            Vector2{0, static_cast<float>(y)},
-            Vector2{window_size.x, static_cast<float>(y)}
-        );
+    for(float x = 0; x <= window_size.x; x += scale)
+        toggle_tile(x, y, false);
 }
 
 float ConwaysGame::distance(Vector2 a, Vector2 b){
