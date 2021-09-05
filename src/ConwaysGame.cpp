@@ -412,6 +412,10 @@ void ConwaysGame::keyboard_input(){
                 fps += 2;
                 SetTargetFPS(fps);
                 break;
+            case 't':
+            case 'T':
+                toggle_row(GetMouseY());
+                break;
             default:
                 break;
         }
@@ -471,6 +475,10 @@ void ConwaysGame::keyboard_input(){
             case ']':
                 scale += 1;
                 resize_grid();
+                break;
+            case 't':
+            case 'T':
+                toggle_column(GetMouseX());
                 break;
             case '1':
             case '2':
@@ -602,6 +610,20 @@ void ConwaysGame::toggle_line_between(Vector2 a, Vector2 b){
     float theta = atan2(b.y - a.y, b.x - a.x);
     for(float i = 0; i <= dist; i++)
         toggle_tile(a.x + i * cos(theta), a.y + i * sin(theta), false);
+}
+
+void ConwaysGame::toggle_column(int x){
+    toggle_line_between(
+            Vector2{static_cast<float>(x), 0},
+            Vector2{static_cast<float>(x), window_size.y}
+        );
+}
+
+void ConwaysGame::toggle_row(int y){
+    toggle_line_between(
+            Vector2{0, static_cast<float>(y)},
+            Vector2{window_size.x, static_cast<float>(y)}
+        );
 }
 
 float ConwaysGame::distance(Vector2 a, Vector2 b){

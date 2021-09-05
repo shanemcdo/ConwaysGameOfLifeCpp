@@ -82,6 +82,8 @@ private:
     void clipboard_to_file(std::string file_path);
     void set_input_needed(FileType f);
     void toggle_line_between(Vector2 a, Vector2 b);
+    void toggle_column(int x);
+    void toggle_row(int y);
     float distance(Vector2 a, Vector2 b);
     Color get_color(int i, int j);
     Vector2 get_selection_corner();
