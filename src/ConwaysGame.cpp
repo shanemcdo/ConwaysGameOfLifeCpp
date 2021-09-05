@@ -608,7 +608,7 @@ void ConwaysGame::set_input_needed(FileType f){
 void ConwaysGame::toggle_line_between(Vector2 a, Vector2 b){
     float dist = ceil(distance(a, b));
     float theta = atan2(b.y - a.y, b.x - a.x);
-    for(float i = 0; i <= dist; i++)
+    for(float i = 0; i <= dist; i += scale)
         toggle_tile(a.x + i * cos(theta), a.y + i * sin(theta), false);
 }
 
