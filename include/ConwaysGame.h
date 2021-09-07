@@ -22,7 +22,7 @@ enum FileType{
 
 class ConwaysGame{
 private:
-    std::string ASSETS_PATH = "/Users/shane/coding/c++/ConwaysGameOfLifeCpp/assets/";
+    std::string ASSETS_PATH = "assets/";
     static constexpr Vector2 DEFAULT_WINDOW_SIZE{1440, 760};
     static constexpr Vector2 MINIMUM_WINDOW_SIZE{720, 380};
     static constexpr float DEFAULT_SCALE = 10;
