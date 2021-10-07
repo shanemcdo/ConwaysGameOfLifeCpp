@@ -80,7 +80,7 @@ void ConwaysGame::draw_walls(){
 }
 
 void ConwaysGame::draw_help(){
-    const int arr_size = 25;
+    const int arr_size = 27;
     const int font_size = 25;
     int widest = -1;
     const char* s[arr_size] = {
@@ -99,6 +99,8 @@ void ConwaysGame::draw_help(){
         "[/] - Increase/Decrease scale",
         "S - Cycle through color schemes",
         "1, 2, 3, 4, 5 - Select color Scheme",
+        "T - Toggle column of cells",
+        "Shift T - Toggle row of cells",
         "Shift click drag - select",
         "Shift X - Cut",
         "Shift C - Copy",
