@@ -80,7 +80,7 @@ void ConwaysGame::draw_walls(){
 }
 
 void ConwaysGame::draw_help(){
-    const int arr_size = 27;
+    const int arr_size = 28;
     const int font_size = 25;
     int widest = -1;
     const char* s[arr_size] = {
@@ -100,6 +100,7 @@ void ConwaysGame::draw_help(){
         "S - Cycle through color schemes",
         "1, 2, 3, 4, 5 - Select color Scheme",
         "T - Toggle column of cells",
+        "G - Set a grid of alive tiles",
         "Shift T - Toggle row of cells",
         "Shift click drag - select",
         "Shift X - Cut",
@@ -170,8 +171,21 @@ void ConwaysGame::draw_input_string(){
     int height = (window_size.y - font_size + padding) / 2;
     int input_width;
     int header_text_font_size = 30;
-    std::string header_text = "Enter the name of a file to ";
-    header_text += (input_needed == LoadFile ? "load" : "save");
+    std::string header_text = "";
+    switch(input_needed) {
+        case SaveFile:
+            header_text = "Enter the name of a file to Save";
+            draw_asset_files(height + font_size + padding);
+            break;
+        case LoadFile:
+            header_text = "Enter the name of a file to Load";
+            draw_asset_files(height + font_size + padding);
+            break;
+        case GridCellSize:
+            header_text = "Enter number of for size of grid";
+            break;
+        default: break;
+    }
     while(1){
         input_width = MeasureText(input_string.c_str(), font_size);
         if(input_width > window_size.x){
@@ -184,7 +198,6 @@ void ConwaysGame::draw_input_string(){
     DrawText(header_text.c_str(), (window_size.x - MeasureText(header_text.c_str(), header_text_font_size)) / 2, height - header_text_font_size, header_text_font_size, Color{20, 20, 20, 255});
     DrawRectangle(0, height, window_size.x, font_size + padding, Color{0, 0, 0, 200});
     DrawText(input_string.c_str(), (window_size.x - input_width) / 2, height + padding / 2, font_size, WHITE);
-    draw_asset_files(height + font_size + padding);
 }
 
 void ConwaysGame::draw_asset_files(float box_bottom_y){
@@ -357,7 +370,7 @@ void ConwaysGame::keyboard_input(){
     int ch = GetCharPressed();
     if(input_needed != None){
         if(IsKeyPressed(KEY_ENTER)){
-            switch (input_needed) {
+            switch(input_needed) {
                 case SaveFile:
                     clipboard_to_file(ASSETS_PATH + input_string);
                     break;
@@ -365,6 +378,9 @@ void ConwaysGame::keyboard_input(){
                     file_to_clipboard(ASSETS_PATH + input_string);
                     break;
                 case GridCellSize:
+                    try{
+                        set_grid(std::stoi(input_string));
+                    }catch(...){}
                     break;
                 default: break;
             }
@@ -636,6 +652,17 @@ void ConwaysGame::toggle_column(int x){
 void ConwaysGame::toggle_row(int y){
     for(float x = 0; x <= window_size.x; x += scale)
         toggle_tile(x, y, false);
+}
+
+void ConwaysGame::set_grid(int cell_size){
+    if(cell_size < 0)
+        return;
+    // for(int x = 0; x < grid_size.x; x += cell_size + 1)
+    //     for(int y = 0; y <= grid_size.y; y++)
+    //         grid[y][x].alive = true;
+    // for(int y = 0; y < grid_size.y; y += cell_size + 1)
+    //     for(int x = 0; x <= grid_size.x; x++)
+    //         grid[y][x].alive = true;
 }
 
 float ConwaysGame::distance(Vector2 a, Vector2 b){

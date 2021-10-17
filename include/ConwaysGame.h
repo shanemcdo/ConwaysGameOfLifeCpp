@@ -85,7 +85,7 @@ private:
     void toggle_line_between(Vector2 a, Vector2 b);
     void toggle_column(int x);
     void toggle_row(int y);
-    void toggle_grid(int offset);
+    void set_grid(int cell_size);
     float distance(Vector2 a, Vector2 b);
     Color get_color(int i, int j);
     Vector2 get_selection_corner();
