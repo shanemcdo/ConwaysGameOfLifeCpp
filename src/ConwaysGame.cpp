@@ -357,10 +357,15 @@ void ConwaysGame::keyboard_input(){
     int ch = GetCharPressed();
     if(input_needed != None){
         if(IsKeyPressed(KEY_ENTER)){
-            if(input_needed == SaveFile){
-                clipboard_to_file(ASSETS_PATH + input_string);
-            }else{
-                file_to_clipboard(ASSETS_PATH + input_string);
+            switch (input_needed) {
+                case SaveFile:
+                    clipboard_to_file(ASSETS_PATH + input_string);
+                    break;
+                case LoadFile:
+                    file_to_clipboard(ASSETS_PATH + input_string);
+                    break;
+                case GridCellSize:
+                    break;
             }
             set_input_needed(None);
             input_string = "";
@@ -485,6 +490,10 @@ void ConwaysGame::keyboard_input(){
             case 't':
             case 'T':
                 toggle_column(GetMouseX());
+                break;
+            case 'G':
+            case 'g':
+                set_input_needed(GridCellSize);
                 break;
             case '1':
             case '2':
