@@ -250,6 +250,8 @@ void ConwaysGame::invert_selection(){
 }
 
 void ConwaysGame::flip_clipboard_horiz(){
+    if(clipboard == nullptr)
+        return;
     for(int i = 0; i < clipboard_size.y; i++)
         for(int j = 0; j < clipboard_size.x / 2; j++){
             Tile temp;
@@ -259,6 +261,8 @@ void ConwaysGame::flip_clipboard_horiz(){
         }
 }
 void ConwaysGame::flip_clipboard_vert(){
+    if(clipboard == nullptr)
+        return;
     for(int i = 0; i < clipboard_size.y / 2; i++){
         Tile* temp = clipboard[i];
         clipboard[i] = clipboard[static_cast<int>(clipboard_size.y - 1) - i];
@@ -602,9 +606,9 @@ void ConwaysGame::clipboard_to_file(std::string file_path){
     f.close();
 }
 
-void ConwaysGame::set_input_needed(FileType f){
-    input_needed = f;
-    SetExitKey(f == None ? KEY_ESCAPE : 0);
+void ConwaysGame::set_input_needed(InputNeeded input){
+    input_needed = input;
+    SetExitKey(input == None ? KEY_ESCAPE : 0);
 }
 
 void ConwaysGame::toggle_line_between(Vector2 a, Vector2 b){

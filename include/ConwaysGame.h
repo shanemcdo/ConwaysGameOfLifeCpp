@@ -14,7 +14,7 @@ enum ColorScheme{
     LOOP_TO_START
 };
 
-enum FileType{
+enum InputNeeded{
     LoadFile,
     SaveFile,
     None
@@ -36,7 +36,7 @@ private:
     Vector2 selection_end;
     Vector2 clipboard_size;
     Vector2 prev_mouse_pos{0, 0};
-    FileType input_needed = None;
+    InputNeeded input_needed = None;
     Tile** grid;
     Tile** clipboard = nullptr;
     std::string input_string = "";
@@ -80,7 +80,7 @@ private:
     void reset_to_default();
     void file_to_clipboard(std::string file_path);
     void clipboard_to_file(std::string file_path);
-    void set_input_needed(FileType f);
+    void set_input_needed(InputNeeded input);
     void toggle_line_between(Vector2 a, Vector2 b);
     void toggle_column(int x);
     void toggle_row(int y);
