@@ -366,6 +366,7 @@ void ConwaysGame::keyboard_input(){
                     break;
                 case GridCellSize:
                     break;
+                default: break;
             }
             set_input_needed(None);
             input_string = "";
