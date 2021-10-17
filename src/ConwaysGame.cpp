@@ -657,12 +657,12 @@ void ConwaysGame::toggle_row(int y){
 void ConwaysGame::set_grid(int cell_size){
     if(cell_size < 0)
         return;
-    // for(int x = 0; x < grid_size.x; x += cell_size + 1)
-    //     for(int y = 0; y <= grid_size.y; y++)
-    //         grid[y][x].alive = true;
-    // for(int y = 0; y < grid_size.y; y += cell_size + 1)
-    //     for(int x = 0; x <= grid_size.x; x++)
-    //         grid[y][x].alive = true;
+    for(int x = 0; x < grid_size.x; x += cell_size + 1)
+        for(int y = 0; y < grid_size.y; y++)
+            grid[y][x].alive = true;
+    for(int y = 0; y < grid_size.y; y += cell_size + 1)
+        for(int x = 0; x < grid_size.x; x++)
+            grid[y][x].alive = true;
 }
 
 float ConwaysGame::distance(Vector2 a, Vector2 b){
