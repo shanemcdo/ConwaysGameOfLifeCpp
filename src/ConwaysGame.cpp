@@ -201,18 +201,72 @@ void ConwaysGame::draw_input_string(){
 }
 
 void ConwaysGame::draw_asset_files(float box_bottom_y){
+    int padding = 10;
     std::string paths = "";
     bool first = true;
     for(const auto& entry: std::filesystem::directory_iterator(ASSETS_PATH)){
         if(first)
             first = false;
         else
-            paths += "\t";
+            paths += " ";
         paths += entry.path().filename().string();
     }
     Rectangle rec{0, box_bottom_y, window_size.x, window_size.y - box_bottom_y};
     DrawRectangleRec(rec, Color{0, 0, 0, 150});
-    DrawTextRec(GetFontDefault(), paths.c_str(), rec, 20, 5, true, WHITE);
+    // DrawTextRec(GetFontDefault(), paths.c_str(), rec, 20, 5, true, WHITE);
+    draw_text_in_rec(
+        paths,
+        Rectangle{
+            rec.x + padding,
+            rec.y + padding,
+            rec.width - padding * 2,
+            rec.height - padding * 2
+        },
+        padding
+    );
+}
+
+void ConwaysGame::draw_text_in_rec(std::string text, Rectangle rec, int line_padding){
+    Font font = GetFontDefault();
+    int font_size = 25;
+    int start_idx = 0;
+    int len = text.length();
+    int y = 0;
+    std::string prev_string = "";
+    int font_height = MeasureTextEx(font, "qP", font_size, line_padding).y + line_padding;
+    int i;
+    for(i = 0; i < len; i++){
+        std::string substring = text.substr(start_idx, i - start_idx);
+        int width = MeasureText(
+            substring.c_str(),
+            font_size
+        );
+        if(width > rec.width){
+            DrawText(
+                prev_string.c_str(),
+                rec.x,
+                rec.y + y,
+                font_size,
+                WHITE
+            );
+            y += font_height;
+            i--;
+            start_idx = i;
+            if(text[i] == ' ')
+                start_idx++;
+            std::cout << start_idx << " " << len << std::endl;
+            prev_string = "";
+        } else {
+            prev_string = substring;
+        }
+    }
+    DrawText(
+        text.substr(start_idx, i - start_idx).c_str(),
+        rec.x,
+        rec.y + y,
+        font_size,
+        WHITE
+    );
 }
 
 void ConwaysGame::copy_selection(bool cut = false){

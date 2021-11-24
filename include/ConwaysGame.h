@@ -61,6 +61,7 @@ private:
     void draw_selection();
     void draw_input_string();
     void draw_asset_files(float box_bottom_y);
+    void draw_text_in_rec(std::string text, Rectangle rec, int line_padding);
     void copy_selection(bool cut);
     void cut_selection();
     void clear_selection();
