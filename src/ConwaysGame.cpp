@@ -230,6 +230,7 @@ void ConwaysGame::draw_text_in_rec(std::string text, Rectangle rec, int line_pad
     Font font = GetFontDefault();
     int font_size = 25;
     int start_idx = 0;
+    int prev_idx = 0;
     int len = text.length();
     int y = 0;
     std::string prev_string = "";
@@ -250,14 +251,15 @@ void ConwaysGame::draw_text_in_rec(std::string text, Rectangle rec, int line_pad
                 WHITE
             );
             y += font_height;
-            i--;
+            i = prev_idx;
             start_idx = i;
             if(text[i] == ' ')
                 start_idx++;
             std::cout << start_idx << " " << len << std::endl;
             prev_string = "";
-        } else {
+        } else if(text[i] == ' '){
             prev_string = substring;
+            prev_idx = i + 1;
         }
     }
     DrawText(
