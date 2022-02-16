@@ -1,25 +1,28 @@
-# Last updated 2020-10-24 by Shane McDonough
-CC = clang++#compiler
-EXTENSION = .cpp#c++ extension
-CFLAGS = -std=c++20 -Wall `pkg-config --libs --cflags raylib`# -c compile and assemble do not link, -Wall turns warnings on
-INCLUDE = -Iinclude# folders to be included, anything following -I is the directory the compiler can now see
-LIBS =# libs to be included, anything following -l is a library that is included
-OBJECTS = $(patsubst src/%$(EXTENSION),bin/%.o,$(wildcard src/*$(EXTENSION)))# in bin/%.o format, all of the objects to be compiled
-TARGET = bin/test
-# previous line explained:
-# patsubst replaces the first arg template with the second arg template on the variable in the third arg
-# wildcard gets all the files that comply with its arg
-# in this case wildcard returns every file with the main extension in the src directory
-# e.g. src/main.cpp src/File1.cpp
-# patsub replaces the src and the extension
-# e.g. bin/main.o bin/File1/.o
+# Last updated 2022-02-15 by Shane McDonough
+CC=clang# c compiler
+EXTENSION=.c# c extension
+TARGET=bin/test# the output file
+DBG_TARGET=$(TARGET).debug
+CFLAGS=-Wall -Iinclude $(shell pkg-config --cflags raylib)# flags to be passed to compiler
+LIBS=$(shell pkg-config --libs raylib)# librarys to link
+DBG_FLAGS=-g# flags for debugging
+DEBUGGER=lldb# debugger to use
+ifeq ("$(wildcard src/*$(EXTENSION))", "")# if there are no c files
+	CC=clang++# c++ compiler
+	EXTENSION=.cpp# c++ extension
+	CFLAGS+=-std=c++20# c++ flags
+endif
+INCLUDES=$(wildcard include/*)# get all include files
+OBJECTS=$(patsubst src/%$(EXTENSION),bin/%.o,$(wildcard src/*$(EXTENSION)))# in bin/%.o format, all of the objects to be compiled
+DBG_OBJECTS=$(patsubst %,%.debug,$(OBJECTS))
 
-all: bin $(OBJECTS)# compile everything
-	$(CC) bin/*.o -o $(TARGET) $(INCLUDE) $(LIBS) $(CFLAGS)
-	@echo
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)# compile the target
+	$(CC) $^ $(LIBS) $(CFLAGS) -o $@
 	
-bin/%.o: src/%$(EXTENSION)# create object file for %
-	$(CC) $< $(CFLAGS) -c -o $@ $(INCLUDE) $(LIBS)
+bin/%.o: src/%$(EXTENSION) $(INCLUDES) bin# create object file for %
+	$(CC) $< $(CFLAGS) -c -o $@
 
 clean:# remove contents of bin
 	rm -rf bin
@@ -32,3 +35,15 @@ test: all# compile everything then run executible
 
 release: clean#make for release
 	make all TARGET=bin/conway
+
+# DEBUGGING RULES
+debug: $(DBG_TARGET)# run make with debug flags and call lldb
+	$(DEBUGGER) $(DBG_TARGET)
+
+$(DBG_TARGET): $(DBG_OBJECTS)# create debug executable
+	$(CC) $^ $(LIBS) $(CFLAGS) $(DBG_FLAGS) -o $@
+
+bin/%.o.debug: src/%$(EXTENSION) $(INCLUDES) bin# create debug object file for %
+	$(CC) $< $(CFLAGS) $(DBG_FLAGS) -c -o $@
+
+.PHONY: all clean test debug
