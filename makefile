@@ -33,8 +33,8 @@ bin:# create folder bin
 test: all# compile everything then run executible
 	$(TARGET)
 
-release: clean#make for release
-	make all TARGET=bin/conway
+release: #make for release
+	make TARGET=bin/conway
 
 # DEBUGGING RULES
 debug: $(DBG_TARGET)# run make with debug flags and call lldb
