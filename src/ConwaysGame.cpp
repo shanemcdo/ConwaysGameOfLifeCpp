@@ -255,7 +255,6 @@ void ConwaysGame::draw_text_in_rec(std::string text, Rectangle rec, int line_pad
             start_idx = i;
             if(text[i] == ' ')
                 start_idx++;
-            std::cout << start_idx << " " << len << std::endl;
             prev_string = "";
         } else if(text[i] == ' '){
             prev_string = substring;
